@@ -4,13 +4,13 @@ import com.umut.shoppingapplication.models.Product
 
 interface ProductsRepository {
 
-    suspend fun insertAll(vararg notes: Product) : List<Long>
+    suspend fun insertAll(vararg products: Product) : List<Long>
 
-    suspend fun insertProduct(Product: Product)
+    suspend fun insertProduct(product: Product)
 
-    suspend fun updateProduct(Product: Product)
+    suspend fun updateProduct(product: Product)
 
-    suspend fun deleteAll(vararg Products: Product)
+    suspend fun deleteAll(vararg products: Product)
 
     suspend fun deleteProduct(Product: Product)
 

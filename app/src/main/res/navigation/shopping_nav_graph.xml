@@ -26,6 +26,9 @@
         <action
             android:id="@+id/action_shoppingCartFragment_to_shoppingFragment"
             app:destination="@id/shoppingFragment" />
+        <action
+            android:id="@+id/action_shoppingCartFragment_to_paymentFragment"
+            app:destination="@id/paymentFragment" />
     </fragment>
 
     <fragment
@@ -33,5 +36,26 @@
         android:name="com.umut.shoppingapplication.ui.fragments.OrdersFragment"
         android:label="fragment_orders"
         tools:layout="@layout/fragment_orders" />
+    <fragment
+        android:id="@+id/paymentFragment"
+        android:name="com.umut.shoppingapplication.ui.fragments.PaymentFragment"
+        android:label="fragment_payment"
+        tools:layout="@layout/fragment_payment" >
+        <action
+            android:id="@+id/action_paymentFragment_to_paymentResultFragment"
+            app:destination="@id/paymentResultFragment" />
+        <action
+            android:id="@+id/action_paymentFragment_to_shoppingCartFragment"
+            app:destination="@id/shoppingCartFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/paymentResultFragment"
+        android:name="com.umut.shoppingapplication.ui.fragments.PaymentResultFragment"
+        android:label="fragment_payment_result"
+        tools:layout="@layout/fragment_payment_result" >
+        <action
+            android:id="@+id/action_paymentResultFragment_to_shoppingFragment"
+            app:destination="@id/shoppingFragment" />
+    </fragment>
 
 </navigation>

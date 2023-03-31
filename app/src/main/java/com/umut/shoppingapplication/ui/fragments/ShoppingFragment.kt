@@ -11,14 +11,14 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.Navigation
 import com.umut.shoppingapplication.R
 import com.umut.shoppingapplication.databinding.FragmentShoppingBinding
-import com.umut.shoppingapplication.ui.viewmodels.ShoppingCartFragmentViewModel
+import com.umut.shoppingapplication.ui.viewmodels.ShoppingFragmentViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class ShoppingFragment : Fragment() {
 
     lateinit var binding: FragmentShoppingBinding
-    val shoppingCartFragmentViewModel: ShoppingCartFragmentViewModel by viewModels()
+    val shoppingFragmentViewModel: ShoppingFragmentViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -34,8 +34,35 @@ class ShoppingFragment : Fragment() {
         // This should call after Navigation Drawer Configured
         configureNavigationItemSelected()
 
+
+
         return binding.root
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     private fun configureNavigationDrawer() {
         val mToggle = ActionBarDrawerToggle(

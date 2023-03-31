@@ -24,7 +24,7 @@ class PaymentFragment : Fragment() {
     ): View? {
         binding = FragmentPaymentBinding.inflate(inflater, container, false)
 
-        
+
         return binding.root
     }
 
