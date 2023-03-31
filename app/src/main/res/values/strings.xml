@@ -2,4 +2,11 @@
     <string name="app_name">ShoppingApplication</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">askdmakldmalksdmlkasdmlkasdmlkasdmakdaklsdmkaskdmakldmalksdmlkasdmlkasdmlkasdmakdaklsdmkaskdmakldmalksdmlkasdmlkasdmlkasdmakdaklsdmkaskdmakldmalksdmlkasdmlkasdmlkasdmakdaklsdmkaskdmakldmalksdmlkasdmlkasdmlkasdmakdaklsdmkaskdmakldmalksdmlkasdmlkasdmlkasdmakdaklsdmk</string>
+
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="menu_order">My Orders</string>
+    <string name="shopping_cart">Shopping Cart</string>
+    <string name="open">Open</string>
+    <string name="close">Close</string>
+    <string name="subtitle">subtitle</string>
 </resources>

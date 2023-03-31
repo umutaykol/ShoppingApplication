@@ -14,6 +14,7 @@
             android:id="@+id/action_shoppingFragment_to_shoppingCartFragment"
             app:destination="@id/shoppingCartFragment" />
     </fragment>
+
     <fragment
         android:id="@+id/shoppingCartFragment"
         android:name="com.umut.shoppingapplication.ui.fragments.ShoppingCartFragment"
@@ -23,4 +24,9 @@
             android:id="@+id/action_shoppingCartFragment_to_shoppingFragment"
             app:destination="@id/shoppingFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/nav_orders"
+        android:name="com.umut.shoppingapplication.ui.fragments.OrdersFragment"
+        android:label="fragment_orders"
+        tools:layout="@layout/fragment_orders" />
 </navigation>
