@@ -9,17 +9,13 @@ import androidx.core.view.GravityCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.Navigation
-import androidx.navigation.ui.AppBarConfiguration
 import com.umut.shoppingapplication.R
 import com.umut.shoppingapplication.databinding.FragmentShoppingBinding
 import com.umut.shoppingapplication.ui.viewmodels.ShoppingCartFragmentViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
-
 @AndroidEntryPoint
 class ShoppingFragment : Fragment() {
-
-    private lateinit var appBarConfiguration: AppBarConfiguration
 
     lateinit var binding: FragmentShoppingBinding
     val shoppingCartFragmentViewModel: ShoppingCartFragmentViewModel by viewModels()
@@ -31,34 +27,19 @@ class ShoppingFragment : Fragment() {
         binding = FragmentShoppingBinding.inflate(inflater, container, false)
 
         setHasOptionsMenu(true)
-
-        (activity as AppCompatActivity).setSupportActionBar(binding.shoppingToolbar)
+        (activity as AppCompatActivity).setSupportActionBar(binding.toolbar.root)
 
         configureListeners()
         configureNavigationDrawer()
         // This should call after Navigation Drawer Configured
         configureNavigationItemSelected()
 
-//        (activity as AppCompatActivity?)!!.supportActionBar?.setSubtitle(R.string.subtitle)
-
-//        val drawerLayout: DrawerLayout = binding.shoppingDrawerLayout
-//        val navView: NavigationView = binding.mainNavigationView
-//        val navController = findNavController(this)
-//
-//        appBarConfiguration = AppBarConfiguration(
-//            setOf(
-//                R.id.nav_orders
-//            ), drawerLayout
-//        )
-//        setupActionBarWithNavController(activity as AppCompatActivity, navController, appBarConfiguration)
-//        navView.setupWithNavController(navController)
-
         return binding.root
     }
 
     private fun configureNavigationDrawer() {
         val mToggle = ActionBarDrawerToggle(
-            activity, binding.shoppingDrawerLayout, binding.shoppingToolbar, R.string.open, R.string.close
+            activity, binding.shoppingDrawerLayout, binding.toolbar.root, R.string.open, R.string.close
         )
         binding.shoppingDrawerLayout.addDrawerListener(mToggle)
         mToggle.syncState()

@@ -6,27 +6,21 @@
     android:layout_height="match_parent"
     tools:context=".ui.fragments.ShoppingFragment">
 
+
     <androidx.drawerlayout.widget.DrawerLayout
         android:id="@+id/shopping_drawer_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context=".ui.fragments.ShoppingFragment">
 
+
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-            <androidx.appcompat.widget.Toolbar
-                android:id="@+id/shopping_toolbar"
-                android:layout_width="match_parent"
-                android:layout_height="?attr/actionBarSize"
-                android:layout_gravity="top"
-                android:background="@color/teal_200"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:menu="@menu/action_bar_menu"
-                app:title=" " />
+            <include
+                android:id="@+id/toolbar"
+                layout="@layout/toolbar"/>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
