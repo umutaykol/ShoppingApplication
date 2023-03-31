@@ -2,12 +2,13 @@ package com.umut.shoppingapplication.ui.fragments
 
 import android.os.Bundle
 import android.view.*
+import android.widget.Toast
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.GravityCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.Navigation
-import androidx.navigation.fragment.NavHostFragment.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import com.umut.shoppingapplication.R
 import com.umut.shoppingapplication.databinding.FragmentShoppingBinding
@@ -34,12 +35,12 @@ class ShoppingFragment : Fragment() {
         (activity as AppCompatActivity).setSupportActionBar(binding.shoppingToolbar)
 
         configureListeners()
-        configureNavigationMenu()
-
-
+        configureNavigationDrawer()
+        // This should call after Navigation Drawer Configured
+        configureNavigationItemSelected()
 
 //        (activity as AppCompatActivity?)!!.supportActionBar?.setSubtitle(R.string.subtitle)
-//
+
 //        val drawerLayout: DrawerLayout = binding.shoppingDrawerLayout
 //        val navView: NavigationView = binding.mainNavigationView
 //        val navController = findNavController(this)
@@ -55,19 +56,32 @@ class ShoppingFragment : Fragment() {
         return binding.root
     }
 
-    private fun configureNavigationMenu() {
+    private fun configureNavigationDrawer() {
         val mToggle = ActionBarDrawerToggle(
             activity, binding.shoppingDrawerLayout, binding.shoppingToolbar, R.string.open, R.string.close
         )
         binding.shoppingDrawerLayout.addDrawerListener(mToggle)
         mToggle.syncState()
+    }
 
-//        NavigationMenuController.navItemClickListener(activity, binding)
+    private fun configureNavigationItemSelected() {
+        binding.shoppingNavigationView.setNavigationItemSelectedListener {
+            when (it.itemId) {
+                R.id.nav_orders -> {
+                    Toast.makeText(requireContext(), "CLICKED", Toast.LENGTH_LONG).show()
+                    navigateToOrders()
+                }
+            }
+
+            if (it.itemId != R.id.nav_orders) binding.shoppingDrawerLayout.closeDrawer(GravityCompat.START)
+
+            true
+        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         inflater.inflate(R.menu.action_bar_menu, menu)
-        super.onCreateOptionsMenu(menu,inflater)
+        super.onCreateOptionsMenu(menu, inflater)
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
@@ -92,12 +106,16 @@ class ShoppingFragment : Fragment() {
 //        }
     }
 
-    fun navigateToShoppingCart() {
+    private fun navigateToShoppingCart() {
         Navigation.findNavController(
             requireActivity(), R.id.main_fragment_container_view
         ).navigate(R.id.action_shoppingFragment_to_shoppingCartFragment)
-
     }
 
+    private fun navigateToOrders() {
+        Navigation.findNavController(
+            requireActivity(), R.id.main_fragment_container_view
+        ).navigate(R.id.action_shoppingFragment_to_ordersFragment)
+    }
 
 }
