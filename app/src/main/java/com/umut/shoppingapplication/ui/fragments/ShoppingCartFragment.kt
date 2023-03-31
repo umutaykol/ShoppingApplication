@@ -5,12 +5,16 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import com.umut.shoppingapplication.databinding.FragmentShoppingBinding
 import com.umut.shoppingapplication.databinding.FragmentShoppingCartBinding
+import com.umut.shoppingapplication.ui.viewmodels.ShoppingCartFragmentViewModel
 
 class ShoppingCartFragment : Fragment() {
 
     lateinit var binding: FragmentShoppingCartBinding
+
+    val shoppingCardFragmentViewModel: ShoppingCartFragmentViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
