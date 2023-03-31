@@ -1,9 +1,5 @@
 package com.umut.shoppingapplication.ui.viewmodels
 
-import android.view.ActionMode
-import android.view.Menu
-import android.view.MenuInflater
-import android.view.View
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import com.google.common.truth.Truth.assertThat
 import com.umut.shoppingapplication.database.FakeProductsRepository
