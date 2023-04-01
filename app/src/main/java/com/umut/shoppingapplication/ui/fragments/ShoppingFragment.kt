@@ -127,7 +127,7 @@ class ShoppingFragment : Fragment(), NoteItemClickListener {
 
         Navigation.findNavController(
             requireActivity(), R.id.main_fragment_container_view
-        ).navigate(R.id.action_shoppingFragment_to_shoppingCartFragment, bundle)
+        ).navigate(R.id.action_shoppingFragment_to_shoppingCartandPaymentFragment, bundle)
     }
 
     private fun navigateToOrders() {

@@ -11,8 +11,8 @@
         android:label="fragment_shopping"
         tools:layout="@layout/fragment_shopping">
         <action
-            android:id="@+id/action_shoppingFragment_to_shoppingCartFragment"
-            app:destination="@id/shoppingCartFragment"
+            android:id="@+id/action_shoppingFragment_to_shoppingCartandPaymentFragment"
+            app:destination="@id/shoppingCartandPaymentFragment"
             app:enterAnim="@anim/enter_anim"
             app:exitAnim="@anim/exit_anim"
             app:popEnterAnim="@anim/pop_enter"
@@ -28,12 +28,12 @@
     </fragment>
 
     <fragment
-        android:id="@+id/shoppingCartFragment"
-        android:name="com.umut.shoppingapplication.ui.fragments.ShoppingCartFragment"
+        android:id="@+id/shoppingCartandPaymentFragment"
+        android:name="com.umut.shoppingapplication.ui.fragments.ShoppingCartAndPaymentFragment"
         android:label="fragment_shopping_cart"
-        tools:layout="@layout/fragment_shopping_cart">
+        tools:layout="@layout/fragment_shopping_cart_and_payment">
         <action
-            android:id="@+id/action_shoppingCartFragment_to_shoppingFragment"
+            android:id="@+id/action_shoppingCartFragment_to_shoppingCartandPaymentFragment"
             app:destination="@id/shoppingFragment" />
         <action
             android:id="@+id/action_shoppingCartFragment_to_paymentFragment"
@@ -55,7 +55,7 @@
             app:destination="@id/paymentResultFragment" />
         <action
             android:id="@+id/action_paymentFragment_to_shoppingCartFragment"
-            app:destination="@id/shoppingCartFragment" />
+            app:destination="@id/shoppingCartandPaymentFragment" />
     </fragment>
     <fragment
         android:id="@+id/paymentResultFragment"
