@@ -17,6 +17,11 @@
             app:exitAnim="@anim/exit_anim"
             app:popEnterAnim="@anim/pop_enter"
             app:popExitAnim="@anim/pop_exit">
+            <argument
+                android:name="amount"
+                android:defaultValue="0"
+                app:argType="float" />
+        </action>
         <action
             android:id="@+id/action_shoppingFragment_to_ordersFragment"
             app:destination="@id/ordersFragment" />

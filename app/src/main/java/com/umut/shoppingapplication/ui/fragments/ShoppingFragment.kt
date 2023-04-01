@@ -5,6 +5,7 @@ import android.view.*
 import android.widget.Toast
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.os.bundleOf
 import androidx.core.view.GravityCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -121,9 +122,12 @@ class ShoppingFragment : Fragment(), NoteItemClickListener {
     }
 
     private fun navigateToShoppingCart() {
+        val bundle = bundleOf()
+        bundle.putFloat("amount", shoppingFragmentViewModel.getFullAmount())
+
         Navigation.findNavController(
             requireActivity(), R.id.main_fragment_container_view
-        ).navigate(R.id.action_shoppingFragment_to_shoppingCartFragment)
+        ).navigate(R.id.action_shoppingFragment_to_shoppingCartFragment, bundle)
     }
 
     private fun navigateToOrders() {

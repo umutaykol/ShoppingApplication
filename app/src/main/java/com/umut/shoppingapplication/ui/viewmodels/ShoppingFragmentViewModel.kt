@@ -15,7 +15,7 @@ class ShoppingFragmentViewModel @Inject constructor(
     private val productsRepository: ProductsRepository
 ) : ViewModel() {
 
-    val productList: Array<Product> by lazy {
+    private val productList: Array<Product> by lazy {
         arrayOf(
             Product(productName = "Kalem", productPrice = 9.58F),
             Product(productName = "Kağıt", productPrice = 0.61F),
@@ -24,11 +24,6 @@ class ShoppingFragmentViewModel @Inject constructor(
             Product(productName = "Kitap", productPrice = 50.82F)
         )
     }
-
-//    init {
-//        deleteAllProductsFromRepository()
-//        insertProductsToRepository(*productList)
-//    }
 
     private var _productsMutableLiveData: MutableLiveData<MutableList<Product>?> =
         MutableLiveData<MutableList<Product>?>()
@@ -56,12 +51,13 @@ class ShoppingFragmentViewModel @Inject constructor(
         productsRepository.updateProduct(product)
     }
 
-//    private fun insertProductToRepository(product: Product) = viewModelScope.launch {
-//        productsRepository.insertProduct(product)
-//    }
+    private fun insertProductToRepository(product: Product) = viewModelScope.launch {
+        productsRepository.insertProduct(product)
+    }
 
     private fun insertProductsToRepository(vararg products: Product) = viewModelScope.launch {
         productsRepository.insertAll(*products)
+
         val newProducts = products.asList() as MutableList<Product>
         productsLiveData.value?.let { newProducts.addAll(it) }
         _productsMutableLiveData.postValue(newProducts)
@@ -81,6 +77,12 @@ class ShoppingFragmentViewModel @Inject constructor(
 
     fun updateProductToDB(product: Product) {
         updateProductOnRepository(product)
+    }
+
+    fun getFullAmount(): Float {
+        var sum = 0F
+        productsLiveData.value?.forEach { sum += it.productPrice * it.productCount }
+        return sum
     }
 
 }

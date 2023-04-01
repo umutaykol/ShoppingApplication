@@ -9,6 +9,7 @@ import com.umut.shoppingapplication.R
 import com.umut.shoppingapplication.databinding.FragmentShoppingBinding
 import com.umut.shoppingapplication.databinding.FragmentShoppingCartBinding
 import com.umut.shoppingapplication.ui.viewmodels.ShoppingCartFragmentViewModel
+import com.umut.shoppingapplication.utils.showLongToast
 
 class ShoppingCartFragment : Fragment() {
 
@@ -25,6 +26,10 @@ class ShoppingCartFragment : Fragment() {
         setHasOptionsMenu(true)
         (activity as AppCompatActivity).setSupportActionBar(binding.toolbar.root)
         binding.toolbar.root.setTitle(R.string.shopping_cart)
+
+
+        val amount: Float? = arguments?.getFloat("amount")
+        showLongToast(requireContext(), amount.toString())
 
         return binding.root
     }
