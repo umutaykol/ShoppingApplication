@@ -9,13 +9,17 @@ import androidx.core.view.GravityCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.Navigation
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.umut.shoppingapplication.R
+import com.umut.shoppingapplication.adapters.NoteItemClickListener
+import com.umut.shoppingapplication.adapters.ProductsRecyclerViewAdapter
 import com.umut.shoppingapplication.databinding.FragmentShoppingBinding
+import com.umut.shoppingapplication.models.Product
 import com.umut.shoppingapplication.ui.viewmodels.ShoppingFragmentViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class ShoppingFragment : Fragment() {
+class ShoppingFragment : Fragment(), NoteItemClickListener {
 
     lateinit var binding: FragmentShoppingBinding
     val shoppingFragmentViewModel: ShoppingFragmentViewModel by viewModels()
@@ -34,34 +38,30 @@ class ShoppingFragment : Fragment() {
         // This should call after Navigation Drawer Configured
         configureNavigationItemSelected()
 
-
+        configureProductsRecyclerView()
 
         return binding.root
     }
 
+    private fun configureProductsRecyclerView() {
+        val adapter = ProductsRecyclerViewAdapter(this)
 
+        binding.productsRecyclerView.adapter = adapter
+        binding.productsRecyclerView.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
 
+        adapter.differ.submitList(
+            mutableListOf(
+                Product(productName = "Kalem", productPrice = 9.58F),
+                Product(productName = "Kağıt", productPrice = 0.61F),
+                Product(productName = "Silgi", productPrice = 30.0F),
+                Product(productName = "Defter", productPrice = 40.0F),
+                Product(productName = "Kitap", productPrice = 50.82F)
+            )
+        )
 
+        adapter.notifyDataSetChanged()
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    }
 
 
     private fun configureNavigationDrawer() {
@@ -124,6 +124,14 @@ class ShoppingFragment : Fragment() {
         Navigation.findNavController(
             requireActivity(), R.id.main_fragment_container_view
         ).navigate(R.id.action_shoppingFragment_to_ordersFragment)
+    }
+
+    override fun cardLongClick(view: View, note: Product, position: Int): Boolean {
+        TODO("Not yet implemented")
+    }
+
+    override fun cardOnClick(view: View, note: Product, position: Int) {
+        TODO("Not yet implemented")
     }
 
 }

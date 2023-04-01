@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="product"
+            type="com.umut.shoppingapplication.models.Product" />
+
+        <variable
+            name="on_click_listener"
+            type="com.umut.shoppingapplication.adapters.NoteItemClickListener" />
+
+        <variable
+            name="position"
+            type="Integer" />
+
+    </data>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/note_card"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        android:background="@color/teal_200"
+        android:clickable="true"
+        android:focusable="true"
+        android:foreground="?android:attr/selectableItemBackground"
+        android:onClick="@{(view) -> on_click_listener.cardOnClick(view, product, position)}"
+        android:onLongClick="@{(view) -> on_click_listener.cardLongClick(view, product, position)}"
+        app:cardCornerRadius="20dp">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/note_card_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/product_image_view"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:scaleType="fitCenter"
+                android:padding="5dp"
+                android:src="@drawable/ic_launcher_background"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:setProductImage="@{product}"
+                tools:ignore="ContentDescription" />
+
+            <TextView
+                android:id="@+id/product_name_text_view"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="14dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="5dp"
+                android:maxLines="1"
+                android:text="@{product.productName.toString()}"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toEndOf="@id/product_image_view"
+                app:layout_constraintTop_toTopOf="parent" />
+
+
+            <TextView
+                android:id="@+id/product_price_text_view"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="14dp"
+                android:layout_marginTop="8dp"
+                android:maxLines="2"
+                android:text="Price: 0₺"
+                app:setAsTextofProductPrice="@{product}"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/product_image_view"
+                app:layout_constraintTop_toBottomOf="@+id/product_name_text_view" />
+            <!--                android:text="@{product.productPrice.toString()}"-->
+
+
+            <!--            <androidx.cardview.widget.CardView-->
+            <!--                android:id="@+id/item_note_body_image_card_view"-->
+            <!--                android:layout_width="wrap_content"-->
+            <!--                android:layout_height="wrap_content"-->
+            <!--                android:layout_margin="14dp"-->
+            <!--                android:layout_marginEnd="24dp"-->
+            <!--                android:layout_marginBottom="14dp"-->
+            <!--                app:cardCornerRadius="10dp"-->
+            <!--                app:layout_constraintBottom_toTopOf="@+id/item_note_date_text_view"-->
+            <!--                app:layout_constraintEnd_toEndOf="parent"-->
+            <!--                app:layout_constraintTop_toBottomOf="@+id/note_selected_icon">-->
+
+            <!--                <ImageView-->
+            <!--                    android:layout_width="56dp"-->
+            <!--                    android:layout_height="72dp"-->
+            <!--                    android:downloadUrl="@{note.imageUrl}"-->
+            <!--                    android:scaleType="centerCrop"-->
+            <!--                    android:visibility="visible" />-->
+
+            <!--            </androidx.cardview.widget.CardView>-->
+
+            <!--            <androidx.cardview.widget.CardView-->
+            <!--                android:id="@+id/item_note_edited_card_view"-->
+            <!--                android:layout_width="wrap_content"-->
+            <!--                android:layout_height="wrap_content"-->
+            <!--                android:layout_marginStart="10dp"-->
+            <!--                android:backgroundTint="@color/black"-->
+            <!--                app:cardCornerRadius="10dp"-->
+            <!--                app:layout_constraintBottom_toBottomOf="parent"-->
+            <!--                app:layout_constraintStart_toStartOf="parent"-->
+            <!--                app:layout_constraintTop_toBottomOf="@+id/item_note_body_text_view"-->
+            <!--                app:setEditedVisibility="@{note.isEdited()}">-->
+
+            <!--                <TextView-->
+            <!--                    android:layout_width="wrap_content"-->
+            <!--                    android:layout_height="wrap_content"-->
+            <!--                    android:padding="6dp"-->
+            <!--                    android:textColor="@color/white"-->
+            <!--                    android:textSize="12sp"-->
+            <!--                    android:text="EDITED"-->
+            <!--                    />-->
+
+            <!--            </androidx.cardview.widget.CardView>-->
+
+            <!--            <TextView-->
+            <!--                android:id="@+id/item_note_date_text_view"-->
+            <!--                android:layout_width="wrap_content"-->
+            <!--                android:layout_height="wrap_content"-->
+            <!--                android:layout_marginTop="40dp"-->
+            <!--                android:layout_marginEnd="14dp"-->
+            <!--                android:layout_marginBottom="14dp"-->
+            <!--                android:text="@{note.lastEditedDate.toString()}"-->
+            <!--                android:textSize="10sp"-->
+            <!--                app:layout_constraintBottom_toBottomOf="parent"-->
+            <!--                app:layout_constraintEnd_toEndOf="parent"-->
+            <!--                app:layout_constraintTop_toBottomOf="@+id/item_note_body_text_view" />-->
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.cardview.widget.CardView>
+</layout>
