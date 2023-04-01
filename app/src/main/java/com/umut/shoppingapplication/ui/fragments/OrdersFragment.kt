@@ -6,8 +6,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.viewmodel.compose.viewModel
-import com.umut.shoppingapplication.R
 import com.umut.shoppingapplication.databinding.FragmentOrdersBinding
 import com.umut.shoppingapplication.ui.viewmodels.OrdersFragmentViewModel
 

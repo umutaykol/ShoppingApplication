@@ -19,6 +19,8 @@
 
     </data>
 
+    <!--        android:onClick="@{(view) -> on_click_listener.cardOnClick(view, product, position)}"-->
+    <!--        android:onLongClick="@{(view) -> on_click_listener.cardLongClick(view, product, position)}"-->
     <androidx.cardview.widget.CardView
         android:id="@+id/note_card"
         android:layout_width="match_parent"
@@ -28,8 +30,6 @@
         android:clickable="true"
         android:focusable="true"
         android:foreground="?android:attr/selectableItemBackground"
-        android:onClick="@{(view) -> on_click_listener.cardOnClick(view, product, position)}"
-        android:onLongClick="@{(view) -> on_click_listener.cardLongClick(view, product, position)}"
         app:cardCornerRadius="20dp">
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -41,8 +41,8 @@
                 android:id="@+id/product_image_view"
                 android:layout_width="80dp"
                 android:layout_height="80dp"
-                android:scaleType="fitCenter"
                 android:padding="5dp"
+                android:scaleType="fitCenter"
                 android:src="@drawable/ic_launcher_background"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -73,11 +73,62 @@
                 android:layout_marginTop="8dp"
                 android:maxLines="2"
                 android:text="Price: 0₺"
-                app:setAsTextofProductPrice="@{product}"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/product_image_view"
-                app:layout_constraintTop_toBottomOf="@+id/product_name_text_view" />
+                app:layout_constraintTop_toBottomOf="@+id/product_name_text_view"
+                app:setAsTextofProductPrice="@{product}" />
+
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="120dp"
+                android:layout_height="60dp"
+                android:layout_marginEnd="20dp"
+                android:backgroundTint="@color/light_gray"
+                app:cardCornerRadius="20dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <ImageButton
+                        android:layout_width="40dp"
+                        android:layout_height="50dp"
+                        android:layout_marginStart="5dp"
+                        android:onClick="@{(view) -> on_click_listener.subProductClicked(view, product, position)}"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical|center_horizontal"
+                        android:text="@{Integer.toString(product.productCount)}"
+                        android:textSize="20dp"
+                        android:textStyle="bold"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <ImageButton
+                        android:layout_width="40dp"
+                        android:layout_height="50dp"
+                        android:layout_gravity="end"
+                        android:layout_marginEnd="5dp"
+                        android:onClick="@{(view) -> on_click_listener.addProductClicked(view, product, position)}"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+            </androidx.cardview.widget.CardView>
             <!--                android:text="@{product.productPrice.toString()}"-->
 
 

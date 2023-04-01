@@ -13,4 +13,5 @@ data class Product(
     @PrimaryKey var id: String = UUID.randomUUID().toString(),
     @ColumnInfo(name = "name") var productName: String = "",
     @ColumnInfo(name = "price") var productPrice: Float = 0F,
+    @ColumnInfo(name = "count") var productCount: Int = 0,
 ) : Parcelable

@@ -5,8 +5,8 @@ import com.umut.shoppingapplication.models.Product
 
 interface NoteItemClickListener {
 
-    fun cardLongClick(view: View, note: Product, position: Int): Boolean
+    fun addProductClicked(view: View, product: Product, position: Int)
 
-    fun cardOnClick(view: View, note: Product, position: Int)
+    fun subProductClicked(view: View, product: Product, position: Int)
 
 }

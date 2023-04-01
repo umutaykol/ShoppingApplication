@@ -16,12 +16,16 @@ import com.umut.shoppingapplication.adapters.ProductsRecyclerViewAdapter
 import com.umut.shoppingapplication.databinding.FragmentShoppingBinding
 import com.umut.shoppingapplication.models.Product
 import com.umut.shoppingapplication.ui.viewmodels.ShoppingFragmentViewModel
+import com.umut.shoppingapplication.utils.showShortToast
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class ShoppingFragment : Fragment(), NoteItemClickListener {
 
+    private val productsRecyclerViewAdapter = ProductsRecyclerViewAdapter(this)
+
     lateinit var binding: FragmentShoppingBinding
+
     val shoppingFragmentViewModel: ShoppingFragmentViewModel by viewModels()
 
     override fun onCreateView(
@@ -30,10 +34,7 @@ class ShoppingFragment : Fragment(), NoteItemClickListener {
     ): View {
         binding = FragmentShoppingBinding.inflate(inflater, container, false)
 
-        setHasOptionsMenu(true)
-        (activity as AppCompatActivity).setSupportActionBar(binding.toolbar.root)
-
-        configureListeners()
+        configureOptionMenuAndActionBarSupporting()
         configureNavigationDrawer()
         // This should call after Navigation Drawer Configured
         configureNavigationItemSelected()
@@ -43,13 +44,21 @@ class ShoppingFragment : Fragment(), NoteItemClickListener {
         return binding.root
     }
 
+    private fun configureOptionMenuAndActionBarSupporting() {
+        setHasOptionsMenu(true)
+        (activity as AppCompatActivity).setSupportActionBar(binding.toolbar.root)
+
+    }
+
     private fun configureProductsRecyclerView() {
-        val adapter = ProductsRecyclerViewAdapter(this)
+        binding.productsRecyclerView.adapter = productsRecyclerViewAdapter
+        binding.productsRecyclerView.layoutManager = LinearLayoutManager(
+            requireContext(),
+            LinearLayoutManager.VERTICAL,
+            false
+        )
 
-        binding.productsRecyclerView.adapter = adapter
-        binding.productsRecyclerView.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
-
-        adapter.differ.submitList(
+        productsRecyclerViewAdapter.differ.submitList(
             mutableListOf(
                 Product(productName = "Kalem", productPrice = 9.58F),
                 Product(productName = "Kağıt", productPrice = 0.61F),
@@ -59,8 +68,7 @@ class ShoppingFragment : Fragment(), NoteItemClickListener {
             )
         )
 
-        adapter.notifyDataSetChanged()
-
+        productsRecyclerViewAdapter.notifyDataSetChanged()
     }
 
 
@@ -96,22 +104,12 @@ class ShoppingFragment : Fragment(), NoteItemClickListener {
         return when (item.itemId) {
             R.id.shopping_cart -> {
                 navigateToShoppingCart()
-                return true
+                true
             }
             else -> {
-                return true
+                true
             }
         }
-    }
-
-    private fun configureListeners() {
-        configureClickListeners()
-    }
-
-    private fun configureClickListeners() {
-//        binding.button.setOnClickListener {
-//            navigateToShoppingCart()
-//        }
     }
 
     private fun navigateToShoppingCart() {
@@ -126,12 +124,33 @@ class ShoppingFragment : Fragment(), NoteItemClickListener {
         ).navigate(R.id.action_shoppingFragment_to_ordersFragment)
     }
 
-    override fun cardLongClick(view: View, note: Product, position: Int): Boolean {
-        TODO("Not yet implemented")
+    override fun addProductClicked(view: View, product: Product, position: Int) {
+        productAddedToCart(product, position)
     }
 
-    override fun cardOnClick(view: View, note: Product, position: Int) {
-        TODO("Not yet implemented")
+    override fun subProductClicked(view: View, product: Product, position: Int) {
+        productSubtractedFromCart(product, position)
+    }
+
+    private fun productAddedToCart(product: Product, position: Int) {
+        var productCount = productsRecyclerViewAdapter.differ.currentList[position].productCount
+        if (productCount in 0..4) {
+            productsRecyclerViewAdapter.differ.currentList[position].productCount += 1
+            productsRecyclerViewAdapter.notifyItemChanged(position)
+        } else {
+            showShortToast(requireContext(), "Aynı üründen sepete 5'ten fazla ekleyemezsiniz.")
+        }
+    }
+
+    private fun productSubtractedFromCart(product: Product, position: Int) {
+        var productCount = productsRecyclerViewAdapter.differ.currentList[position].productCount
+        if (productCount in 1..5) {
+            productsRecyclerViewAdapter.differ.currentList[position].productCount -= 1
+            productsRecyclerViewAdapter.notifyItemChanged(position)
+        } else {
+            showShortToast(requireContext(), "Sepetinizde ürün bulunmamaktadır.")
+        }
+
     }
 
 }
