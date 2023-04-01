@@ -16,6 +16,8 @@ import com.umut.shoppingapplication.utils.Constants
 import com.umut.shoppingapplication.utils.Constants.amount
 import com.umut.shoppingapplication.utils.format_watchers.CardExpiryDateFormatterWatcher
 import com.umut.shoppingapplication.utils.format_watchers.FourDigitCardFormatterWatcher
+import com.umut.shoppingapplication.utils.luhn_algorithm.checkLuhnAlgorithm
+import com.umut.shoppingapplication.utils.showLongToast
 
 
 class ShoppingCartAndPaymentFragment : Fragment() {
@@ -55,6 +57,7 @@ class ShoppingCartAndPaymentFragment : Fragment() {
 
     private fun configureClickListeners() {
         binding.consentOrderButton.setOnClickListener {
+            showLongToast(requireContext(), binding.cardNumberTextInputEditText.text.toString().checkLuhnAlgorithm().toString())
             navigateToPaymentResult()
         }
     }
