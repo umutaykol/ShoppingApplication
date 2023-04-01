@@ -51,7 +51,7 @@ class ShoppingFragment : Fragment(), NoteItemClickListener {
         with(shoppingFragmentViewModel) {
             productsLiveData.observe(viewLifecycleOwner) {
                 if (it?.size != 5) {
-                    shoppingFragmentViewModel.addAllProductsToDB()
+                    shoppingFragmentViewModel.addAllDummyProductsToDB()
                 } else {
                     addProductsToRecyclerView(it)
                 }

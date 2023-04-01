@@ -62,6 +62,9 @@ class ShoppingFragmentViewModel @Inject constructor(
 
     private fun insertProductsToRepository(vararg products: Product) = viewModelScope.launch {
         productsRepository.insertAll(*products)
+        val newProducts = products.asList() as MutableList<Product>
+        productsLiveData.value?.let { newProducts.addAll(it) }
+        _productsMutableLiveData.postValue(newProducts)
     }
 
     /**
@@ -72,7 +75,7 @@ class ShoppingFragmentViewModel @Inject constructor(
         getAllProductsFromRepository()
     }
 
-    fun addAllProductsToDB() {
+    fun addAllDummyProductsToDB() {
         insertProductsToRepository(*productList)
     }
 
