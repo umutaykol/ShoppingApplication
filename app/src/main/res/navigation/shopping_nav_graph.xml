@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/shoppingFragment"
-        android:name="com.umut.shoppingapplication.ui.fragments.ShoppingFragment"
+        android:name="com.umut.shoppingapplication.ui.payment.shopping_screen.ShoppingFragment"
         android:label="fragment_shopping"
         tools:layout="@layout/fragment_shopping">
         <action
@@ -24,42 +24,31 @@
         </action>
         <action
             android:id="@+id/action_shoppingFragment_to_ordersFragment"
-            app:destination="@id/ordersFragment" />
+            app:destination="@id/ordersFragment"
+            app:enterAnim="@anim/enter_anim"
+            app:exitAnim="@anim/exit_anim"
+            app:popEnterAnim="@anim/pop_enter"
+            app:popExitAnim="@anim/pop_exit" />
     </fragment>
 
     <fragment
         android:id="@+id/shoppingCartandPaymentFragment"
-        android:name="com.umut.shoppingapplication.ui.fragments.ShoppingCartAndPaymentFragment"
+        android:name="com.umut.shoppingapplication.ui.payment.shopping_cart_and_payment_screen.ShoppingCartAndPaymentFragment"
         android:label="fragment_shopping_cart"
         tools:layout="@layout/fragment_shopping_cart_and_payment">
         <action
-            android:id="@+id/action_shoppingCartFragment_to_shoppingCartandPaymentFragment"
-            app:destination="@id/shoppingFragment" />
-        <action
-            android:id="@+id/action_shoppingCartFragment_to_paymentFragment"
-            app:destination="@id/paymentFragment" />
+            android:id="@+id/action_shoppingCartandPaymentFragment_to_paymentResultFragment"
+            app:destination="@id/paymentResultFragment" />
     </fragment>
 
     <fragment
         android:id="@+id/ordersFragment"
-        android:name="com.umut.shoppingapplication.ui.fragments.OrdersFragment"
+        android:name="com.umut.shoppingapplication.ui.payment.orders_screen.OrdersFragment"
         android:label="fragment_orders"
         tools:layout="@layout/fragment_orders" />
     <fragment
-        android:id="@+id/paymentFragment"
-        android:name="com.umut.shoppingapplication.ui.fragments.PaymentFragment"
-        android:label="fragment_payment"
-        tools:layout="@layout/fragment_payment">
-        <action
-            android:id="@+id/action_paymentFragment_to_paymentResultFragment"
-            app:destination="@id/paymentResultFragment" />
-        <action
-            android:id="@+id/action_paymentFragment_to_shoppingCartFragment"
-            app:destination="@id/shoppingCartandPaymentFragment" />
-    </fragment>
-    <fragment
         android:id="@+id/paymentResultFragment"
-        android:name="com.umut.shoppingapplication.ui.fragments.PaymentResultFragment"
+        android:name="com.umut.shoppingapplication.ui.payment.payment_result_screen.PaymentResultFragment"
         android:label="fragment_payment_result"
         tools:layout="@layout/fragment_payment_result">
         <action

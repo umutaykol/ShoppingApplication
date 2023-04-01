@@ -5,6 +5,7 @@ import com.google.common.truth.Truth.assertThat
 import com.umut.shoppingapplication.database.FakeProductsRepository
 import com.umut.shoppingapplication.models.Product
 import com.umut.shoppingapplication.rules.MainCoroutineRule
+import com.umut.shoppingapplication.ui.payment.shopping_screen.ShoppingFragmentViewModel
 import com.umut.shoppingapplication.utils.getOrAwaitValue
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import org.junit.Before

@@ -5,7 +5,7 @@
     <item
         android:id="@+id/shopping_cart"
         android:icon="@drawable/ic_baseline_shopping_cart"
-        android:title="@string/shopping_cart"
+        android:title="@string/shopping_cart_and_payment_toolbar_title"
         app:showAsAction="always" />
 
 </menu>

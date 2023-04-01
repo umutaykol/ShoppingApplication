@@ -24,7 +24,7 @@ fun setProductImage(view: View, product: Product) {
     )
 }
 
-@BindingAdapter("app:setAsTextofProductPrice")
-fun setAsTextofProductPrice(view: View, product: Product) {
-    (view as TextView).text = "Price: ${product.productPrice}"
+@BindingAdapter("app:setAsTextOfProductPrice")
+fun setAsTextOfProductPrice(view: View, product: Product) {
+    (view as TextView).text = "Fiyat: ${product.productPrice}"
 }
