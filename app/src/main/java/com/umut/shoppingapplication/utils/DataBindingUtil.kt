@@ -16,7 +16,6 @@ fun setProductImage(view: View, product: Product) {
             "Silgi" -> R.drawable.eraser
             "Kağıt" -> R.drawable.paper
             "Defter" -> R.drawable.notebook
-
             else -> {
                 R.drawable.ic_launcher_background
             }
@@ -26,5 +25,5 @@ fun setProductImage(view: View, product: Product) {
 
 @BindingAdapter("app:setAsTextOfProductPrice")
 fun setAsTextOfProductPrice(view: View, product: Product) {
-    (view as TextView).text = "Fiyat: ${product.productPrice}"
+    (view as TextView).text = "Fiyat: ${product.productPrice}₺"
 }
