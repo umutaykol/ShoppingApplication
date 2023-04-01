@@ -1,8 +1,7 @@
 package com.umut.shoppingapplication.ui.payment
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import androidx.appcompat.app.ActionBar
+import androidx.appcompat.app.AppCompatActivity
 import com.umut.shoppingapplication.R
 import dagger.hilt.android.AndroidEntryPoint
 

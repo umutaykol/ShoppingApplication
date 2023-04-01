@@ -11,7 +11,7 @@
 
         <variable
             name="on_click_listener"
-            type="com.umut.shoppingapplication.adapters.NoteItemClickListener" />
+            type="com.umut.shoppingapplication.adapters.products.NoteItemClickListener" />
 
         <variable
             name="position"

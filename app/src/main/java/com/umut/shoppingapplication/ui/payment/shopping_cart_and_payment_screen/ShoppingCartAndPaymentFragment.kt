@@ -5,15 +5,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.Navigation
 import com.umut.shoppingapplication.R
 import com.umut.shoppingapplication.databinding.FragmentShoppingCartAndPaymentBinding
-import com.umut.shoppingapplication.utils.CardExpiryDateFormatterWatcher
-import com.umut.shoppingapplication.utils.FourDigitCardFormatterWatcher
-import com.umut.shoppingapplication.utils.showLongToast
+import com.umut.shoppingapplication.utils.format_watchers.CardExpiryDateFormatterWatcher
+import com.umut.shoppingapplication.utils.format_watchers.FourDigitCardFormatterWatcher
 
 
 class ShoppingCartAndPaymentFragment : Fragment() {

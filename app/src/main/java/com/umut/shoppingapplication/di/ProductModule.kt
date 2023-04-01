@@ -1,7 +1,7 @@
 package com.umut.shoppingapplication.di
 
-import com.umut.shoppingapplication.repository.ProductsRepository
-import com.umut.shoppingapplication.repository.ProductsRepositoryImpl
+import com.umut.shoppingapplication.repository.products.ProductsRepository
+import com.umut.shoppingapplication.repository.products.ProductsRepositoryImpl
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn

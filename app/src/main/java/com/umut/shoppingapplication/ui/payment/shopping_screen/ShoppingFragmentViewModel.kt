@@ -5,7 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.umut.shoppingapplication.models.Product
-import com.umut.shoppingapplication.repository.ProductsRepository
+import com.umut.shoppingapplication.repository.products.ProductsRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject

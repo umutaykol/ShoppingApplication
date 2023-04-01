@@ -1,7 +1,7 @@
 package com.umut.shoppingapplication.database
 
 import com.umut.shoppingapplication.models.Product
-import com.umut.shoppingapplication.repository.ProductsRepository
+import com.umut.shoppingapplication.repository.products.ProductsRepository
 
 class FakeProductsRepository : ProductsRepository {
 

@@ -21,13 +21,12 @@ class FakeShoppingViewModel {
     @get:Rule
     var mainCoroutineRule = MainCoroutineRule()
 
-
     private lateinit var viewModel: ShoppingFragmentViewModel
 
     @Before
     fun setup() {
-        val fakeNotesRepository = FakeProductsRepository()
-        viewModel = ShoppingFragmentViewModel(fakeNotesRepository)
+        val fakeProductsRepository = FakeProductsRepository()
+        viewModel = ShoppingFragmentViewModel(fakeProductsRepository)
     }
 
     private val testProduct1 = Product(id = "12345", productName = "product1", productPrice = 1.0F)
@@ -36,7 +35,7 @@ class FakeShoppingViewModel {
 
     @Test
     fun `getAllProducts with empty repository returns size of 0`() {
-        viewModel.getAllProductsFromRepository()
+        viewModel.getAllProductsFromDB()
 
         val value = viewModel.productsLiveData.getOrAwaitValue()
 
