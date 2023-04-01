@@ -40,8 +40,28 @@ class ShoppingFragment : Fragment(), NoteItemClickListener {
         configureNavigationItemSelected()
 
         configureProductsRecyclerView()
+        observeLiveDataChanges()
+
+        shoppingFragmentViewModel.getAllProductsFromDB()
 
         return binding.root
+    }
+
+    private fun observeLiveDataChanges() {
+        with(shoppingFragmentViewModel) {
+            productsLiveData.observe(viewLifecycleOwner) {
+                if (it?.size != 5) {
+                    shoppingFragmentViewModel.addAllProductsToDB()
+                } else {
+                    addProductsToRecyclerView(it)
+                }
+            }
+        }
+    }
+
+    private fun addProductsToRecyclerView(products: MutableList<Product>) {
+        productsRecyclerViewAdapter.differ.submitList(products)
+        productsRecyclerViewAdapter.notifyDataSetChanged()
     }
 
     private fun configureOptionMenuAndActionBarSupporting() {
@@ -57,18 +77,6 @@ class ShoppingFragment : Fragment(), NoteItemClickListener {
             LinearLayoutManager.VERTICAL,
             false
         )
-
-        productsRecyclerViewAdapter.differ.submitList(
-            mutableListOf(
-                Product(productName = "Kalem", productPrice = 9.58F),
-                Product(productName = "Kağıt", productPrice = 0.61F),
-                Product(productName = "Silgi", productPrice = 30.0F),
-                Product(productName = "Defter", productPrice = 40.0F),
-                Product(productName = "Kitap", productPrice = 50.82F)
-            )
-        )
-
-        productsRecyclerViewAdapter.notifyDataSetChanged()
     }
 
 
@@ -137,6 +145,8 @@ class ShoppingFragment : Fragment(), NoteItemClickListener {
         if (productCount in 0..4) {
             productsRecyclerViewAdapter.differ.currentList[position].productCount += 1
             productsRecyclerViewAdapter.notifyItemChanged(position)
+
+            shoppingFragmentViewModel.updateProductToDB(productsRecyclerViewAdapter.differ.currentList[position])
         } else {
             showShortToast(requireContext(), "Aynı üründen sepete 5'ten fazla ekleyemezsiniz.")
         }
@@ -147,6 +157,8 @@ class ShoppingFragment : Fragment(), NoteItemClickListener {
         if (productCount in 1..5) {
             productsRecyclerViewAdapter.differ.currentList[position].productCount -= 1
             productsRecyclerViewAdapter.notifyItemChanged(position)
+
+            shoppingFragmentViewModel.updateProductToDB(productsRecyclerViewAdapter.differ.currentList[position])
         } else {
             showShortToast(requireContext(), "Sepetinizde ürün bulunmamaktadır.")
         }

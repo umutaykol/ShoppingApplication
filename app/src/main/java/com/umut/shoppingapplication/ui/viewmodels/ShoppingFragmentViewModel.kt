@@ -15,7 +15,7 @@ class ShoppingFragmentViewModel @Inject constructor(
     private val productsRepository: ProductsRepository
 ) : ViewModel() {
 
-    private val productList: Array<Product> by lazy {
+    val productList: Array<Product> by lazy {
         arrayOf(
             Product(productName = "Kalem", productPrice = 9.58F),
             Product(productName = "Kağıt", productPrice = 0.61F),
@@ -25,10 +25,10 @@ class ShoppingFragmentViewModel @Inject constructor(
         )
     }
 
-    init {
-        deleteAllProductsFromRepository()
-        insertProductsToRepository(*productList)
-    }
+//    init {
+//        deleteAllProductsFromRepository()
+//        insertProductsToRepository(*productList)
+//    }
 
     private var _productsMutableLiveData: MutableLiveData<MutableList<Product>?> =
         MutableLiveData<MutableList<Product>?>()
@@ -47,7 +47,7 @@ class ShoppingFragmentViewModel @Inject constructor(
         productsRepository.deleteAllProducts()
     }
 
-    fun getAllProductsFromRepository() = viewModelScope.launch {
+    private fun getAllProductsFromRepository() = viewModelScope.launch {
         val products = productsRepository.getAllProducts()
         _productsMutableLiveData.postValue(products)
     }
@@ -67,5 +67,17 @@ class ShoppingFragmentViewModel @Inject constructor(
     /**
      * Database Operations
      */
+
+    fun getAllProductsFromDB() {
+        getAllProductsFromRepository()
+    }
+
+    fun addAllProductsToDB() {
+        insertProductsToRepository(*productList)
+    }
+
+    fun updateProductToDB(product: Product) {
+        updateProductOnRepository(product)
+    }
 
 }
