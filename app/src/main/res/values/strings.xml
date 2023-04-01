@@ -9,4 +9,5 @@
     <string name="open">Open</string>
     <string name="close">Close</string>
     <string name="subtitle">subtitle</string>
+    <string name="payment_result_screen">Ödeme Sonuç Sayfası</string>
 </resources>

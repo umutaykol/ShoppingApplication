@@ -8,6 +8,6 @@ import javax.inject.Inject
 class ShoppingCartAndPaymentFragmentViewModel @Inject constructor(
 ) : ViewModel() {
 
-
+    var amount: Float = 0F
 
 }

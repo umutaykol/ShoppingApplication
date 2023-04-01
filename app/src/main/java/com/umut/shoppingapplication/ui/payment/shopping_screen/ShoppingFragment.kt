@@ -16,6 +16,7 @@ import com.umut.shoppingapplication.adapters.products.NoteItemClickListener
 import com.umut.shoppingapplication.adapters.products.ProductsRecyclerViewAdapter
 import com.umut.shoppingapplication.databinding.FragmentShoppingBinding
 import com.umut.shoppingapplication.models.Product
+import com.umut.shoppingapplication.utils.Constants.amount
 import com.umut.shoppingapplication.utils.showShortToast
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -122,7 +123,7 @@ class ShoppingFragment : Fragment(), NoteItemClickListener {
 
     private fun navigateToShoppingCart() {
         val bundle = bundleOf()
-        bundle.putFloat("amount", shoppingFragmentViewModel.getFullAmount())
+        bundle.putFloat(amount, shoppingFragmentViewModel.getFullAmount())
 
         Navigation.findNavController(
             requireActivity(), R.id.main_fragment_container_view

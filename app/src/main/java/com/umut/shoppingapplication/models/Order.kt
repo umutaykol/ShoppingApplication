@@ -13,5 +13,5 @@ data class Order(
     @PrimaryKey var id: String = UUID.randomUUID().toString(),
     @ColumnInfo(name = "credit_card_number") var creditCardNumber: String = "",
     @ColumnInfo(name = "amount") var orderAmount: Float = 0F,
-    @ColumnInfo(name = "date") var orderDate: Int = 0,
+    @ColumnInfo(name = "date") var orderDate: String = "",
 ) : Parcelable

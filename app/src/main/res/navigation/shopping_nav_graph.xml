@@ -38,7 +38,13 @@
         tools:layout="@layout/fragment_shopping_cart_and_payment">
         <action
             android:id="@+id/action_shoppingCartandPaymentFragment_to_paymentResultFragment"
-            app:destination="@id/paymentResultFragment" />
+            app:destination="@id/paymentResultFragment">
+            <argument
+                android:name="order"
+                android:defaultValue="@null"
+                app:argType="com.umut.shoppingapplication.models.Order"
+                app:nullable="true" />
+        </action>
     </fragment>
 
     <fragment
@@ -53,7 +59,12 @@
         tools:layout="@layout/fragment_payment_result">
         <action
             android:id="@+id/action_paymentResultFragment_to_shoppingFragment"
-            app:destination="@id/shoppingFragment" />
+            app:destination="@id/shoppingFragment">
+            <argument
+                android:name="payment_result"
+                android:defaultValue="false"
+                app:argType="boolean" />
+        </action>
     </fragment>
 
 </navigation>
