@@ -6,7 +6,6 @@ import android.widget.TextView
 import androidx.databinding.BindingAdapter
 import com.umut.shoppingapplication.R
 import com.umut.shoppingapplication.models.Product
-import com.umut.shoppingapplication.utils.Constants.white_space
 
 @BindingAdapter("app:setProductImage")
 fun setProductImage(view: View, product: Product) {
@@ -31,5 +30,7 @@ fun setAsTextOfProductPrice(view: View, product: Product) {
 
 @BindingAdapter("app:setMaskedTextCreditCardNumber")
 fun setMaskedTextCreditCardNumber(view: View, creditCardNumber: String) {
-    (view as TextView).text = creditCardNumber.maskedCardNumber()
+    if (creditCardNumber.length >= 16) {
+        (view as TextView).text = creditCardNumber.maskedCardNumber()
+    }
 }

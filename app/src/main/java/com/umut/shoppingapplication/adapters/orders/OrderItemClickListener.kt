@@ -5,6 +5,6 @@ import com.umut.shoppingapplication.models.Order
 
 interface OrderItemClickListener {
 
-    fun deleteOrderClicked(view: View, product: Order, position: Int)
+    fun deleteOrderClicked(view: View, order: Order, position: Int)
 
 }

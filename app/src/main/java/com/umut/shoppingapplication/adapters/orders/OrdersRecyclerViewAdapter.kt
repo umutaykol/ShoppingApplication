@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.umut.shoppingapplication.R
 import com.umut.shoppingapplication.databinding.OrderItemBinding
-import com.umut.shoppingapplication.models.Product
+import com.umut.shoppingapplication.models.Order
 
 class OrdersRecyclerViewAdapter(private val orderItemClickListener: OrderItemClickListener) :
     RecyclerView.Adapter<OrdersRecyclerViewAdapter.OrdersViewHolder>() {
@@ -19,7 +19,7 @@ class OrdersRecyclerViewAdapter(private val orderItemClickListener: OrderItemCli
         val inflater = LayoutInflater.from(parent.context)
         val view = DataBindingUtil.inflate<OrderItemBinding>(
             inflater,
-            R.layout.product_item,
+            R.layout.order_item,
             parent,
             false
         )
@@ -30,16 +30,16 @@ class OrdersRecyclerViewAdapter(private val orderItemClickListener: OrderItemCli
 
     override fun onBindViewHolder(holder: OrdersViewHolder, position: Int) {
         holder.view.position = position
-        holder.view.product = differ.currentList[position]
+        holder.view.order = differ.currentList[position]
         holder.view.onClickListener = orderItemClickListener
     }
 
-    private val differCallback = object : DiffUtil.ItemCallback<Product>() {
-        override fun areItemsTheSame(oldItem: Product, newItem: Product): Boolean {
+    private val differCallback = object : DiffUtil.ItemCallback<Order>() {
+        override fun areItemsTheSame(oldItem: Order, newItem: Order): Boolean {
             return oldItem.id == newItem.id
         }
 
-        override fun areContentsTheSame(oldItem: Product, newItem: Product): Boolean {
+        override fun areContentsTheSame(oldItem: Order, newItem: Order): Boolean {
             return oldItem == newItem
         }
     }

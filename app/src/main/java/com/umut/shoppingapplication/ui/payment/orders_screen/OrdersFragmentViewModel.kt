@@ -26,10 +26,12 @@ class OrdersFragmentViewModel @Inject constructor(
 
     private fun deleteOrdersFromRepository(vararg orders: Order) = viewModelScope.launch {
         ordersRepository.deleteAll(*orders)
+        getAllOrdersFromRepository()
     }
 
     private fun deleteAllOrdersFromRepository() = viewModelScope.launch {
         ordersRepository.deleteAllOrders()
+        getAllOrdersFromRepository()
     }
 
     fun getAllOrdersFromRepository() = viewModelScope.launch {
@@ -39,21 +41,24 @@ class OrdersFragmentViewModel @Inject constructor(
 
     private fun updateOrderOnRepository(order: Order) = viewModelScope.launch {
         ordersRepository.updateOrder(order)
+        getAllOrdersFromRepository()
     }
 
     private fun insertOrderToRepository(order: Order) = viewModelScope.launch {
         ordersRepository.insertOrder(order)
+        getAllOrdersFromRepository()
     }
 
     fun insertOrdersToRepository(vararg orders: Order) = viewModelScope.launch {
         ordersRepository.insertAll(*orders)
-
-        val newOrders = orders.asList() as MutableList<Order>
-        _ordersMutableLiveData.value?.let { newOrders.addAll(it) }
-        _ordersMutableLiveData.postValue(newOrders)
+        getAllOrdersFromRepository()
     }
 
     /**
      * Database Operations
      */
+
+    fun deleteOrderFromDB(order: Order) {
+        deleteOrdersFromRepository(order)
+    }
 }

@@ -92,7 +92,7 @@ class ShoppingFragmentViewModel @Inject constructor(
     }
 
     fun isCartIsNotEmpty(): Boolean {
-       productsLiveData.value?.forEach { if(it.productCount != 0) return true }
+        productsLiveData.value?.forEach { if (it.productCount != 0) return true }
         return false
     }
 

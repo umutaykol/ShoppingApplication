@@ -7,7 +7,9 @@ import android.view.ViewGroup
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.umut.shoppingapplication.adapters.orders.OrderItemClickListener
+import com.umut.shoppingapplication.adapters.orders.OrdersRecyclerViewAdapter
 import com.umut.shoppingapplication.databinding.FragmentOrdersBinding
 import com.umut.shoppingapplication.models.Order
 import dagger.hilt.android.AndroidEntryPoint
@@ -15,9 +17,11 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class OrdersFragment : Fragment(), OrderItemClickListener {
 
+    private val ordersRecyclerViewAdapter = OrdersRecyclerViewAdapter(this)
+
     private val ordersFragmentViewModel: OrdersFragmentViewModel by viewModels()
 
-    lateinit var binding: FragmentOrdersBinding
+    private lateinit var binding: FragmentOrdersBinding
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
@@ -30,27 +34,29 @@ class OrdersFragment : Fragment(), OrderItemClickListener {
 
         ordersFragmentViewModel.getAllOrdersFromRepository()
 
-        TODO("Orderlar silinebilecek.")
-
         return binding.root
     }
 
     private fun configureOrdersRecyclerView() {
-        TODO("Orderlar için Recycler View Configure Edilecek.")
-//        binding.ordersRecyclerView.adapter = ordersRecyclerViewAdapter
-//        binding.productsRecyclerView.layoutManager = LinearLayoutManager(
-//            requireContext(),
-//            LinearLayoutManager.VERTICAL,
-//            false
-//        )
+        binding.ordersRecyclerView.adapter = ordersRecyclerViewAdapter
+        binding.ordersRecyclerView.layoutManager = LinearLayoutManager(
+            requireContext(),
+            LinearLayoutManager.VERTICAL,
+            false
+        )
     }
 
     private fun observeLiveDataChanges() {
         with(ordersFragmentViewModel) {
             ordersLiveData.observe(viewLifecycleOwner) {
-
+                addOrdersToRecyclerView(it)
             }
         }
+    }
+
+    private fun addOrdersToRecyclerView(orders: MutableList<Order>?) {
+        ordersRecyclerViewAdapter.differ.submitList(orders)
+        ordersRecyclerViewAdapter.notifyDataSetChanged()
     }
 
     override fun deleteOrderClicked(view: View, order: Order, position: Int) {
@@ -60,7 +66,7 @@ class OrdersFragment : Fragment(), OrderItemClickListener {
             negativeButtonText = "Hayır",
             positiveButtonText = "Evet",
             negativeButtonFunction = { /* Do Nothing */ },
-            positiveButtonFunction = { TODO("Sipariş DB'den silinecek.") }
+            positiveButtonFunction = { ordersFragmentViewModel.deleteOrderFromDB(order) }
         )
     }
 

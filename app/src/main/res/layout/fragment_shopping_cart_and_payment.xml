@@ -180,7 +180,7 @@
                         android:id="@+id/price_of_amount_text_view"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/zero_₺"
+                        android:text="@string/zero_tl"
                         android:textColor="@color/black"
                         android:textStyle="bold" />
 

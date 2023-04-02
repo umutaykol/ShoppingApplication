@@ -71,7 +71,7 @@
                 android:layout_marginHorizontal="14dp"
                 android:layout_marginTop="8dp"
                 android:maxLines="2"
-                android:text="@string/price_0₺"
+                android:text="@string/price_0tl"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/product_image_view"
