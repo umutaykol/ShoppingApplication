@@ -24,7 +24,7 @@ class DatabaseDi {
 
     @Singleton
     @Provides
-    fun proviceOrdersDatabase(@ApplicationContext context: Context): OrdersDao {
+    fun provideOrdersDatabase(@ApplicationContext context: Context): OrdersDao {
         return OrdersDB.getDatabase(context).EntityDao()
     }
 

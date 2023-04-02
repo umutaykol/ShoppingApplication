@@ -7,19 +7,19 @@ import com.umut.shoppingapplication.models.Order
 interface OrdersDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insertAll(vararg notes: Order): List<Long>
+    suspend fun insertAll(vararg orders: Order): List<Long>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insertOrder(note: Order)
+    suspend fun insertOrder(order: Order)
 
     @Update(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun updateOrder(note: Order)
+    suspend fun updateOrder(order: Order)
 
     @Delete
     suspend fun deleteAll(vararg notesEntities: Order)
 
     @Delete
-    suspend fun deleteOrder(note: Order)
+    suspend fun deleteOrder(order: Order)
 
     @Query("Select * from order_table")
     suspend fun getAllOrders(): MutableList<Order>

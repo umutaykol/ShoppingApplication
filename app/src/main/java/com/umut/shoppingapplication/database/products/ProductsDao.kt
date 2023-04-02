@@ -7,19 +7,19 @@ import com.umut.shoppingapplication.models.Product
 interface ProductsDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insertAll(vararg notes: Product): List<Long>
+    suspend fun insertAll(vararg products: Product): List<Long>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insertProduct(note: Product)
+    suspend fun insertProduct(product: Product)
 
     @Update(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun updateProduct(note: Product)
+    suspend fun updateProduct(product: Product)
 
     @Delete
     suspend fun deleteAll(vararg notesEntities: Product)
 
     @Delete
-    suspend fun deleteProduct(note: Product)
+    suspend fun deleteProduct(product: Product)
 
     @Query("Select * from product_table")
     suspend fun getAllProducts(): MutableList<Product>

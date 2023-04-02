@@ -18,8 +18,9 @@ import com.umut.shoppingapplication.utils.format_watchers.CardExpiryDateFormatte
 import com.umut.shoppingapplication.utils.format_watchers.FourDigitCardFormatterWatcher
 import com.umut.shoppingapplication.utils.luhn_algorithm.checkLuhnAlgorithm
 import com.umut.shoppingapplication.utils.showLongToast
+import dagger.hilt.android.AndroidEntryPoint
 
-
+@AndroidEntryPoint
 class ShoppingCartAndPaymentFragment : Fragment() {
 
     lateinit var binding: FragmentShoppingCartAndPaymentBinding

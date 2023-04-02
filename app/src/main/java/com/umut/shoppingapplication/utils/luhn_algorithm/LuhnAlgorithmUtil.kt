@@ -5,11 +5,12 @@ fun String.checkLuhnAlgorithm(): Boolean {
 
     if (creditCardNumber.length != 16) return false
 
-    var checksum: Int = 0
+    var checksum = 0
 
     for (i in creditCardNumber.length - 1 downTo 0 step 2) {
         checksum += creditCardNumber[i] - '0'
     }
+
     for (i in creditCardNumber.length - 2 downTo 0 step 2) {
         val n: Int = (creditCardNumber[i] - '0') * 2
         checksum += if (n > 9) n - 9 else n

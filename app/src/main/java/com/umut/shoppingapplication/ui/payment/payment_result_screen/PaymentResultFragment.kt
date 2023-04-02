@@ -15,7 +15,9 @@ import com.umut.shoppingapplication.models.Order
 import com.umut.shoppingapplication.utils.Constants.order
 import com.umut.shoppingapplication.utils.Constants.payment_result
 import com.umut.shoppingapplication.utils.showLongToast
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class PaymentResultFragment : Fragment() {
 
     lateinit var binding: FragmentPaymentResultBinding
@@ -25,7 +27,7 @@ class PaymentResultFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         binding = FragmentPaymentResultBinding.inflate(inflater, container, false)
 
 
@@ -39,6 +41,8 @@ class PaymentResultFragment : Fragment() {
 
         binding.order = order
 
+        order?.let { paymentResultViewModel.insertOrdersToRepository(it) }
+        
         configureListeners()
 
         return binding.root
