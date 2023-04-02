@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.activity.OnBackPressedCallback
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
@@ -14,7 +15,6 @@ import com.umut.shoppingapplication.databinding.FragmentPaymentResultBinding
 import com.umut.shoppingapplication.models.Order
 import com.umut.shoppingapplication.utils.Constants.order
 import com.umut.shoppingapplication.utils.Constants.payment_result
-import com.umut.shoppingapplication.utils.showLongToast
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -24,28 +24,39 @@ class PaymentResultFragment : Fragment() {
 
     private val paymentResultViewModel: PaymentResultViewModel by viewModels()
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+
+        val onBackPressedCallback = object : OnBackPressedCallback(true) {
+            override fun handleOnBackPressed() {
+                // Handle the back button event
+            }
+        }
+        requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner, onBackPressedCallback)
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
         binding = FragmentPaymentResultBinding.inflate(inflater, container, false)
 
-
-        setHasOptionsMenu(true)
-        (activity as AppCompatActivity).setSupportActionBar(binding.toolbar.root)
-        binding.toolbar.root.setTitle(R.string.payment_result_screen)
+        configureOptionMenuAndActionBarSupporting()
 
         val order: Order? = arguments?.getParcelable(order)
-
-        showLongToast(requireContext(), order.toString())
-
         binding.order = order
 
         order?.let { paymentResultViewModel.insertOrdersToRepository(it) }
-        
+
         configureListeners()
 
         return binding.root
+    }
+
+    private fun configureOptionMenuAndActionBarSupporting() {
+        setHasOptionsMenu(true)
+        (activity as AppCompatActivity).setSupportActionBar(binding.toolbar.root)
+        binding.toolbar.root.setTitle(R.string.payment_result_screen)
     }
 
     private fun configureListeners() {
