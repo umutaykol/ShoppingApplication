@@ -19,7 +19,6 @@ import com.umut.shoppingapplication.utils.format_watchers.FourDigitCardFormatter
 import com.umut.shoppingapplication.utils.getCurrentDateTime
 import com.umut.shoppingapplication.utils.input_watchers.CardExpiryDateInputValidityWatcher
 import com.umut.shoppingapplication.utils.input_watchers.CardNumberInputValidityWatcher
-import com.umut.shoppingapplication.utils.luhn_algorithm.checkLuhnAlgorithm
 import com.umut.shoppingapplication.utils.showLongToast
 import com.umut.shoppingapplication.utils.toString
 import dagger.hilt.android.AndroidEntryPoint
@@ -81,11 +80,26 @@ class ShoppingCartAndPaymentFragment : Fragment() {
 
     private fun configureClickListeners() {
         binding.consentOrderButton.setOnClickListener {
-            showLongToast(
-                requireContext(),
-                binding.cardNumberTextInputEditText.text.toString().checkLuhnAlgorithm().toString()
-            )
-            navigateToPaymentResult()
+            ifCardInformationsCorrect() {
+                navigateToPaymentResult()
+            }
+        }
+    }
+
+    private fun ifCardInformationsCorrect(function: () -> Unit) {
+        if (!binding.cardNumberTextInputLayout.isErrorEnabled &&
+            !binding.cardExpiryDateTextInputLayout.isErrorEnabled
+        ) {
+            if (binding.cardNumberTextInputEditText.text?.length == 19 &&
+                binding.cardExpiryDateTextInputEditText.text?.length == 5 &&
+                binding.cardHolderNameTextInputEditText.text?.length != 0
+            ) {
+                function()
+            } else {
+                showLongToast(requireContext(), "Eksik alanlar bulunmaktadır.")
+            }
+        } else {
+            showLongToast(requireContext(), "Hatalı alanlar bulunmaktadır.")
         }
     }
 
