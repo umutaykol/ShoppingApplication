@@ -38,6 +38,7 @@ class ShoppingFragmentViewModel @Inject constructor(
 
     private fun deleteAllProductsFromRepository() = viewModelScope.launch {
         productsRepository.deleteAllProducts()
+        _productsMutableLiveData.postValue(mutableListOf())
     }
 
     private fun getAllProductsFromRepository() = viewModelScope.launch {
@@ -67,6 +68,10 @@ class ShoppingFragmentViewModel @Inject constructor(
 
     fun addAllDummyProductsToDB() {
         insertProductsToRepository(*productList)
+    }
+
+    fun addProductToDB(vararg products: Product) {
+        insertProductsToRepository(*products)
     }
 
     fun deleteAllProductsFromDB() {

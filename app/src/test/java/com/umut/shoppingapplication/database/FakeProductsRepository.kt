@@ -9,7 +9,7 @@ class FakeProductsRepository : ProductsRepository {
 
     override suspend fun insertAll(vararg products: Product): List<Long> {
         this.products.addAll(products)
-        return listOf(products.size as Long)
+        return listOf(products.size.toLong())
     }
 
     override suspend fun insertProduct(product: Product) {

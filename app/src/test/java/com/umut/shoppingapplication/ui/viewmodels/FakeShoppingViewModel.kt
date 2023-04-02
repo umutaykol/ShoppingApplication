@@ -29,9 +29,21 @@ class FakeShoppingViewModel {
         viewModel = ShoppingFragmentViewModel(fakeProductsRepository)
     }
 
-    private val testProduct1 = Product(id = "12345", productName = "product1", productPrice = 1.0F)
-    private val testProduct2 = Product(id = "54321", productName= "product2", productPrice = 2.5F)
-    private val testProduct3 = Product(id = "15243", productName= "product3", productPrice = 7.2F)
+    private val testProduct1Id = "12345"
+    private val testProduct2Id = "54321"
+    private val testProduct3Id = "15243"
+
+    private val testProduct1ProductName = "product1"
+    private val testProduct2ProductName = "product2"
+    private val testProduct3ProductName = "product3"
+
+    private val testProduct1ProductPrice = 1.0F
+    private val testProduct2ProductPrice = 2.5F
+    private val testProduct3ProductPrice = 7.2F
+
+    private val testProduct1 = Product(id = testProduct1Id, productName = testProduct1ProductName, productPrice = testProduct1ProductPrice, productCount = 1)
+    private val testProduct2 = Product(id = testProduct2Id, productName = testProduct2ProductName, productPrice = testProduct2ProductPrice, productCount = 1)
+    private val testProduct3 = Product(id = testProduct3Id, productName = testProduct3ProductName, productPrice = testProduct3ProductPrice, productCount = 1)
 
     @Test
     fun `getAllProducts with empty repository returns size of 0`() {
@@ -41,5 +53,59 @@ class FakeShoppingViewModel {
 
         assertThat(value?.size).isEqualTo(0)
     }
+
+    @Test
+    fun `after inserted new Product contains inserted Product`() {
+        viewModel.addProductToDB(testProduct1)
+
+        val value = viewModel.productsLiveData.getOrAwaitValue()
+
+        assertThat(value?.get(0)?.id).isEqualTo("12345")
+    }
+
+    @Test
+    fun `after deleting all products from DB productsLiveData size should be 0`() {
+        viewModel.addAllDummyProductsToDB()
+
+        viewModel.deleteAllProductsFromDB()
+
+        val value = viewModel.productsLiveData.getOrAwaitValue()
+
+        assertThat(value?.size).isEqualTo(0)
+    }
+
+    @Test
+    fun `after updating existed product old one should be updated`() {
+        viewModel.addProductToDB(testProduct1)
+
+        viewModel.updateProductToDB(testProduct1.copy(productPrice = 5.0F))
+        viewModel.getAllProductsFromDB()
+
+        val value = viewModel.productsLiveData.getOrAwaitValue()
+
+        assertThat(value?.get(0)?.productPrice).isEqualTo(5.0F)
+        assertThat(value?.get(0)?.productPrice).isNotEqualTo(testProduct1ProductPrice)
+    }
+
+    @Test
+    fun `after add product isCartIsNotEmpty() returns true`() {
+        viewModel.addProductToDB(testProduct1, testProduct2, testProduct3)
+
+        assertThat(viewModel.isCartIsNotEmpty()).isEqualTo(true)
+    }
+
+    @Test
+    fun `before add product isCartIsNotEmpty() returns false`() {
+        assertThat(viewModel.isCartIsNotEmpty()).isEqualTo(false)
+    }
+
+    @Test
+    fun `after all test products inserted getFullAmount() returns full amount`() {
+        viewModel.addProductToDB(testProduct1, testProduct2, testProduct3)
+
+        assertThat(viewModel.getFullAmount()).isEqualTo(testProduct1ProductPrice + testProduct2ProductPrice + testProduct3ProductPrice)
+    }
+
+
 
 }
