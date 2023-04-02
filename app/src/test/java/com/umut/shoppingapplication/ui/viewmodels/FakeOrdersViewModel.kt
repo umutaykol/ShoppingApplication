@@ -5,6 +5,7 @@ import com.google.common.truth.Truth.assertThat
 import com.umut.shoppingapplication.database.FakeOrdersRepository
 import com.umut.shoppingapplication.models.Order
 import com.umut.shoppingapplication.rules.MainCoroutineRule
+import com.umut.shoppingapplication.ui.payment.orders_screen.OrdersFragmentViewModel
 import com.umut.shoppingapplication.ui.payment.payment_result_screen.PaymentResultFragmentViewModel
 import com.umut.shoppingapplication.utils.getOrAwaitValue
 import kotlinx.coroutines.ExperimentalCoroutinesApi
@@ -13,7 +14,7 @@ import org.junit.Rule
 import org.junit.Test
 
 @ExperimentalCoroutinesApi
-class FakePaymentResultViewModel {
+class FakeOrdersViewModel {
 
     @get:Rule
     var instantTaskExecutorRule = InstantTaskExecutorRule()
@@ -21,12 +22,12 @@ class FakePaymentResultViewModel {
     @get:Rule
     var mainCoroutineRule = MainCoroutineRule()
 
-    private lateinit var viewModel: PaymentResultFragmentViewModel
+    private lateinit var viewModel: OrdersFragmentViewModel
 
     @Before
     fun setup() {
         val fakeOrdersRepository = FakeOrdersRepository()
-        viewModel = PaymentResultFragmentViewModel(fakeOrdersRepository)
+        viewModel = OrdersFragmentViewModel(fakeOrdersRepository)
     }
 
     private val testOrder1Id = "12345"
@@ -46,12 +47,24 @@ class FakePaymentResultViewModel {
 
     @Test
     fun `after inserting orders ordersLiveData should contains inserted order`() {
+        viewModel.getAllOrdersFromRepository()
         viewModel.addOrdersToRepository(testOrder1)
 
         val value = viewModel.ordersLiveData.getOrAwaitValue()
 
         assertThat(value?.size).isEqualTo(1)
         assertThat(value?.get(0)).isEqualTo(testOrder1)
+    }
+
+    @Test
+    fun `after inserting and deleting same order Db should not contain order`() {
+        viewModel.getAllOrdersFromRepository()
+        viewModel.addOrdersToRepository(testOrder1)
+        viewModel.deleteOrderFromDB(testOrder1)
+
+        val value = viewModel.ordersLiveData.getOrAwaitValue()
+
+        assertThat(value?.size).isEqualTo(0)
     }
 
 }

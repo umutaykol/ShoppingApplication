@@ -26,7 +26,7 @@ class PaymentResultFragmentViewModel @Inject constructor(
      * Database Operations
      */
 
-    fun insertOrdersToRepository(vararg orders: Order) = viewModelScope.launch {
+    fun addOrdersToRepository(vararg orders: Order) = viewModelScope.launch {
         ordersRepository.insertAll(*orders)
 
         val newOrders = orders.asList() as MutableList<Order>

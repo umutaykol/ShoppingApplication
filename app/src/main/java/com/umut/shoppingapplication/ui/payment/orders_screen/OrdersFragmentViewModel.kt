@@ -34,6 +34,14 @@ class OrdersFragmentViewModel @Inject constructor(
         _ordersMutableLiveData.postValue(orders)
     }
 
+    fun addOrdersToRepository(vararg orders: Order) = viewModelScope.launch {
+        ordersRepository.insertAll(*orders)
+
+        val newOrders = orders.asList() as MutableList<Order>
+        _ordersMutableLiveData.value?.let { newOrders.addAll(it) }
+        _ordersMutableLiveData.postValue(newOrders)
+    }
+
     /**
      * Database Operations
      */

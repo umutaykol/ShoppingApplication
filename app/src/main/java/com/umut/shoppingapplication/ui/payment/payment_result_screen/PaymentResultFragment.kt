@@ -41,7 +41,7 @@ class PaymentResultFragment : Fragment() {
         configureListeners()
 
         paymentResultFragmentViewModel.order?.let {
-            paymentResultFragmentViewModel.insertOrdersToRepository(it)
+            paymentResultFragmentViewModel.addOrdersToRepository(it)
             binding.order = it
         }
 
