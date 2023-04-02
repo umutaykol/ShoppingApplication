@@ -13,6 +13,7 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
+        android:background="@color/colorhunt_dark_sea"
         android:layout_height="match_parent"
         tools:context=".ui.payment.payment_result_screen.PaymentResultFragment">
 
@@ -33,6 +34,7 @@
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
+                android:background="@color/colorhunt_sea"
                 android:layout_height="match_parent"
                 android:orientation="vertical"
                 android:padding="16dp">

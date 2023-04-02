@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/colorhunt_dark_sea"
     tools:context=".ui.payment.orders_screen.OrdersFragment">
 
     <LinearLayout

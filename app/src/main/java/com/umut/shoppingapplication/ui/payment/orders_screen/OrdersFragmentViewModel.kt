@@ -29,29 +29,9 @@ class OrdersFragmentViewModel @Inject constructor(
         getAllOrdersFromRepository()
     }
 
-    private fun deleteAllOrdersFromRepository() = viewModelScope.launch {
-        ordersRepository.deleteAllOrders()
-        getAllOrdersFromRepository()
-    }
-
     fun getAllOrdersFromRepository() = viewModelScope.launch {
         val orders = ordersRepository.getAllOrders()
         _ordersMutableLiveData.postValue(orders)
-    }
-
-    private fun updateOrderOnRepository(order: Order) = viewModelScope.launch {
-        ordersRepository.updateOrder(order)
-        getAllOrdersFromRepository()
-    }
-
-    private fun insertOrderToRepository(order: Order) = viewModelScope.launch {
-        ordersRepository.insertOrder(order)
-        getAllOrdersFromRepository()
-    }
-
-    fun insertOrdersToRepository(vararg orders: Order) = viewModelScope.launch {
-        ordersRepository.insertAll(*orders)
-        getAllOrdersFromRepository()
     }
 
     /**

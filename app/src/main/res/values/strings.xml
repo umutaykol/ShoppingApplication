@@ -2,7 +2,7 @@
     <string name="app_name">ShoppingApplication</string>
 
     <string name="nav_header_desc">Navigation header</string>
-    <string name="menu_order">My Orders</string>
+    <string name="menu_order">Tüm Siparişlerim</string>
     <string name="shopping_cart_and_payment_toolbar_title">Ödeme Sayfası</string>
     <string name="open">Open</string>
     <string name="close">Close</string>
@@ -27,5 +27,6 @@
     <string name="cart_amount">Sepet Tutarı :</string>
     <string name="zero_tl">0₺</string>
     <string name="consent_order">Siparişi Onayla</string>
-    <string name="price_0tl">Price: 0₺</string>
+    <string name="price_0tl">Fiyat: 0₺</string>
+    <string name="product_image">Product Image</string>
 </resources>

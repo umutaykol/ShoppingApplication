@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/colorhunt_dark_sea"
     tools:context=".ui.payment.shopping_cart_and_payment_screen.ShoppingCartAndPaymentFragment">
 
     <include
@@ -23,6 +24,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:background="@color/colorhunt_sea"
             android:gravity="start"
             android:orientation="vertical"
             android:padding="16dp">

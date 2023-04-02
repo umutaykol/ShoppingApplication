@@ -5,8 +5,8 @@
     xmlns:tools1="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/colorhunt_dark_sea"
     tools:context=".ui.fragments.ShoppingFragment">
-
 
     <androidx.drawerlayout.widget.DrawerLayout
         android:id="@+id/shopping_drawer_layout"
@@ -17,7 +17,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:context=".ui.fragments.ShoppingFragment">
-
 
         <LinearLayout
             android:layout_width="match_parent"
