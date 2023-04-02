@@ -10,11 +10,11 @@ import com.umut.shoppingapplication.R
 import com.umut.shoppingapplication.databinding.ProductItemBinding
 import com.umut.shoppingapplication.models.Product
 
-class ProductsRecyclerViewAdapter(private val noteItemClickListener: NoteItemClickListener) : RecyclerView.Adapter<ProductsRecyclerViewAdapter.NotesViewHolder>() {
+class ProductsRecyclerViewAdapter(private val productItemClickListener: ProductItemClickListener) : RecyclerView.Adapter<ProductsRecyclerViewAdapter.ProductsViewHolder>() {
 
-    class NotesViewHolder(var view: ProductItemBinding) : RecyclerView.ViewHolder(view.root) {}
+    class ProductsViewHolder(var view: ProductItemBinding) : RecyclerView.ViewHolder(view.root) {}
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): NotesViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ProductsViewHolder {
         val inflater = LayoutInflater.from(parent.context)
         val view = DataBindingUtil.inflate<ProductItemBinding>(
             inflater,
@@ -22,15 +22,15 @@ class ProductsRecyclerViewAdapter(private val noteItemClickListener: NoteItemCli
             parent,
             false
         )
-        return NotesViewHolder(view)
+        return ProductsViewHolder(view)
     }
 
     override fun getItemCount(): Int = differ.currentList.size
 
-    override fun onBindViewHolder(holder: NotesViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: ProductsViewHolder, position: Int) {
         holder.view.position = position
         holder.view.product = differ.currentList[position]
-        holder.view.onClickListener = noteItemClickListener
+        holder.view.onClickListener = productItemClickListener
     }
 
     private val differCallback = object : DiffUtil.ItemCallback<Product>() {

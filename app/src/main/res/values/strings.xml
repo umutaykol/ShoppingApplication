@@ -8,4 +8,24 @@
     <string name="close">Close</string>
     <string name="subtitle">subtitle</string>
     <string name="payment_result_screen">Ödeme Sonuç Sayfası</string>
+    <string name="total_amount">Toplam Tutar :</string>
+    <string name="credit_card">Kredi Kartı :</string>
+    <string name="order_date">Alışveriş Tarihi :</string>
+    <string name="order_id">Sipariş Numarası :</string>
+    <string name="success_icon">success icon</string>
+    <string name="back_to_shopping">Alışveriş Sayfasına Dön</string>
+    <string name="shopping_application">Shopping Application</string>
+    <string name="welcome">Hoş Geldiniz</string>
+    <string name="card_number_header">Kart Numarası</string>
+    <string name="full_masked_credit_card_number_edit_text_hint">**** **** **** ****</string>
+    <string name="visa_card">Visa Card</string>
+    <string name="master_card">Master Card</string>
+    <string name="card_holder_header">Kart Üzerindeki İsim</string>
+    <string name="expiry_date_header">Son Kullanma Tarihi</string>
+    <string name="month_year_input_edit_text_hint">Ay/Yıl</string>
+    <string name="card_holder_name_input_edit_text_hint">Kart Sahibinin Adı Ve Soyadı</string>
+    <string name="cart_amount">Sepet Tutarı :</string>
+    <string name="zero_₺">0₺</string>
+    <string name="consent_order">Siparişi Onayla</string>
+    <string name="price_0₺">Price: 0₺</string>
 </resources>

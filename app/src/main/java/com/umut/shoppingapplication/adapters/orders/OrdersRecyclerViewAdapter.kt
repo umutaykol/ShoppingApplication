@@ -7,28 +7,28 @@ import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.umut.shoppingapplication.R
-import com.umut.shoppingapplication.databinding.ProductItemBinding
+import com.umut.shoppingapplication.databinding.OrderItemBinding
 import com.umut.shoppingapplication.models.Product
 
 class OrdersRecyclerViewAdapter(private val orderItemClickListener: OrderItemClickListener) :
-    RecyclerView.Adapter<OrdersRecyclerViewAdapter.NotesViewHolder>() {
+    RecyclerView.Adapter<OrdersRecyclerViewAdapter.OrdersViewHolder>() {
 
-    class NotesViewHolder(var view: ProductItemBinding) : RecyclerView.ViewHolder(view.root) {}
+    class OrdersViewHolder(var view: OrderItemBinding) : RecyclerView.ViewHolder(view.root) {}
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): NotesViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): OrdersViewHolder {
         val inflater = LayoutInflater.from(parent.context)
-        val view = DataBindingUtil.inflate<ProductItemBinding>(
+        val view = DataBindingUtil.inflate<OrderItemBinding>(
             inflater,
             R.layout.product_item,
             parent,
             false
         )
-        return NotesViewHolder(view)
+        return OrdersViewHolder(view)
     }
 
     override fun getItemCount(): Int = differ.currentList.size
 
-    override fun onBindViewHolder(holder: NotesViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: OrdersViewHolder, position: Int) {
         holder.view.position = position
         holder.view.product = differ.currentList[position]
         holder.view.onClickListener = orderItemClickListener

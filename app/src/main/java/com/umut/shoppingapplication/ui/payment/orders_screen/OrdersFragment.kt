@@ -28,13 +28,13 @@ class OrdersFragment : Fragment() {
 
         ordersFragmentViewModel.getAllOrdersFromRepository()
 
-        //TODO : Orderlar silinebilecek.
+        TODO( "Orderlar silinebilecek.")
 
         return binding.root
     }
 
     private fun configureOrdersRecyclerView() {
-        // TODO : Orderlar için Recycler View Configure Edilecek.
+        TODO("Orderlar için Recycler View Configure Edilecek.")
 //        binding.ordersRecyclerView.adapter = ordersRecyclerViewAdapter
 //        binding.productsRecyclerView.layoutManager = LinearLayoutManager(
 //            requireContext(),

@@ -3,7 +3,7 @@ package com.umut.shoppingapplication.adapters.products
 import android.view.View
 import com.umut.shoppingapplication.models.Product
 
-interface NoteItemClickListener {
+interface ProductItemClickListener {
 
     fun addProductClicked(view: View, product: Product, position: Int)
 

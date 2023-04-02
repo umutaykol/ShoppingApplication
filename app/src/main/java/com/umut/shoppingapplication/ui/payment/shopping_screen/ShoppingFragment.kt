@@ -11,7 +11,7 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.umut.shoppingapplication.R
-import com.umut.shoppingapplication.adapters.products.NoteItemClickListener
+import com.umut.shoppingapplication.adapters.products.ProductItemClickListener
 import com.umut.shoppingapplication.adapters.products.ProductsRecyclerViewAdapter
 import com.umut.shoppingapplication.databinding.FragmentShoppingBinding
 import com.umut.shoppingapplication.models.Product
@@ -22,7 +22,7 @@ import com.umut.shoppingapplication.utils.showShortToast
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class ShoppingFragment : Fragment(), NoteItemClickListener {
+class ShoppingFragment : Fragment(), ProductItemClickListener {
 
     private val productsRecyclerViewAdapter = ProductsRecyclerViewAdapter(this)
 
@@ -48,6 +48,7 @@ class ShoppingFragment : Fragment(), NoteItemClickListener {
 
         configureOptionMenuAndActionBarSupporting()
         configureNavigationDrawer()
+
         // This should call after Navigation Drawer Configured
         configureNavigationItemSelected()
 
@@ -189,5 +190,4 @@ class ShoppingFragment : Fragment(), NoteItemClickListener {
         }
 
     }
-
 }
