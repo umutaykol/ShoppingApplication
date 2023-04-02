@@ -6,14 +6,13 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.recyclerview.widget.LinearLayoutManager
 import com.umut.shoppingapplication.databinding.FragmentOrdersBinding
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class OrdersFragment : Fragment() {
 
-    val ordersFragmentViewModel: OrdersFragmentViewModel by viewModels()
+    private val ordersFragmentViewModel: OrdersFragmentViewModel by viewModels()
 
     lateinit var binding: FragmentOrdersBinding
 
@@ -28,6 +27,8 @@ class OrdersFragment : Fragment() {
         observeLiveDataChanges()
 
         ordersFragmentViewModel.getAllOrdersFromRepository()
+
+        //TODO : Orderlar silinebilecek.
 
         return binding.root
     }
