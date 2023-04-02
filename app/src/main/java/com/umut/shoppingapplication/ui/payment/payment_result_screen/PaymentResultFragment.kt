@@ -40,7 +40,10 @@ class PaymentResultFragment : Fragment() {
         configureToolbarTitle()
         configureListeners()
 
-        paymentResultFragmentViewModel.order?.let { paymentResultFragmentViewModel.insertOrdersToRepository(it) }
+        paymentResultFragmentViewModel.order?.let {
+            paymentResultFragmentViewModel.insertOrdersToRepository(it)
+            binding.order = it
+        }
 
         return binding.root
     }

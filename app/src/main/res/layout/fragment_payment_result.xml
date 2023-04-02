@@ -16,7 +16,6 @@
         android:layout_height="match_parent"
         tools:context=".ui.payment.payment_result_screen.PaymentResultFragment">
 
-
         <include
             android:id="@+id/toolbar"
             layout="@layout/toolbar" />
@@ -51,8 +50,9 @@
                     <ImageView
                         android:id="@+id/image_view"
                         android:layout_width="100dp"
+                        android:padding="10dp"
                         android:layout_height="100dp"
-                        android:src="@drawable/ic_launcher_background" />
+                        android:src="@drawable/success_icon" />
 
                 </androidx.cardview.widget.CardView>
 
@@ -70,6 +70,14 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Toplam Tutar : "
+                        android:textColor="@color/black"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:text="Kredi Kartı : "
                         android:textColor="@color/black"
                         android:textStyle="bold" />
 
@@ -98,6 +106,14 @@
                         android:text="@{Float.toString(order.orderAmount)}"
                         android:textColor="@color/black"
                         android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:textColor="@color/black"
+                        android:textStyle="bold"
+                        app:setMaskedTextCreditCardNumber="@{order.creditCardNumber}"/>
 
                     <TextView
                         android:layout_width="wrap_content"

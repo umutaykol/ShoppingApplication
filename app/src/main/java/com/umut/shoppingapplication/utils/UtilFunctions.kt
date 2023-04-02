@@ -11,3 +11,7 @@ fun showLongToast(context: Context, message: String) {
 fun showShortToast(context: Context, message: String) {
     Toast.makeText(context, message, Toast.LENGTH_SHORT).show()
 }
+
+fun String.maskedCardNumber(): String {
+    return this.replaceRange(6..11, "******")
+}

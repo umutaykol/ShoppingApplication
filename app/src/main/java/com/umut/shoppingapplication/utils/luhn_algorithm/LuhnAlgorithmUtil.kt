@@ -1,7 +1,9 @@
 package com.umut.shoppingapplication.utils.luhn_algorithm
 
+import com.umut.shoppingapplication.utils.Constants.white_space
+
 fun String.checkLuhnAlgorithm(): Boolean {
-    val creditCardNumber = this.filter { it != ' ' }
+    val creditCardNumber = this.filter { it != white_space }
 
     if (creditCardNumber.length != 16) return false
 
