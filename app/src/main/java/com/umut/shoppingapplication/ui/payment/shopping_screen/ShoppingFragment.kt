@@ -2,7 +2,6 @@ package com.umut.shoppingapplication.ui.payment.shopping_screen
 
 import android.os.Bundle
 import android.view.*
-import android.widget.Toast
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.os.bundleOf
@@ -18,6 +17,7 @@ import com.umut.shoppingapplication.databinding.FragmentShoppingBinding
 import com.umut.shoppingapplication.models.Product
 import com.umut.shoppingapplication.utils.Constants
 import com.umut.shoppingapplication.utils.Constants.amount
+import com.umut.shoppingapplication.utils.showLongToast
 import com.umut.shoppingapplication.utils.showShortToast
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -28,17 +28,16 @@ class ShoppingFragment : Fragment(), NoteItemClickListener {
 
     lateinit var binding: FragmentShoppingBinding
 
-    val shoppingFragmentViewModel: ShoppingFragmentViewModel by viewModels()
+    private val shoppingFragmentViewModel: ShoppingFragmentViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        val paymentResult = arguments?.getBoolean(Constants.payment_result)
+        shoppingFragmentViewModel.paymentResult = arguments?.getBoolean(Constants.payment_result)
 
-        if(paymentResult == true) {
-            // TODO : eğer paymentResult true ise tüm productlar 0' a çekilmeli. Databaseden silinme yapılmayacak.
+        if (shoppingFragmentViewModel.paymentResult == true) {
+            shoppingFragmentViewModel.deleteAllProductsFromDB()
         }
-
     }
 
     override fun onCreateView(
@@ -105,7 +104,6 @@ class ShoppingFragment : Fragment(), NoteItemClickListener {
         binding.shoppingNavigationView.setNavigationItemSelectedListener {
             when (it.itemId) {
                 R.id.nav_orders -> {
-                    Toast.makeText(requireContext(), "CLICKED", Toast.LENGTH_LONG).show()
                     navigateToOrders()
                 }
             }
@@ -113,6 +111,14 @@ class ShoppingFragment : Fragment(), NoteItemClickListener {
             if (it.itemId != R.id.nav_orders) binding.shoppingDrawerLayout.closeDrawer(GravityCompat.START)
 
             true
+        }
+    }
+
+    private fun ifCartIsNotEmpty(function: () -> Unit) {
+        if (shoppingFragmentViewModel.isCartIsNotEmpty()) {
+            function()
+        } else {
+            showLongToast(requireContext(), "Sepetinizde ürün bulunmamaktadır.")
         }
     }
 
@@ -124,7 +130,9 @@ class ShoppingFragment : Fragment(), NoteItemClickListener {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             R.id.shopping_cart -> {
-                navigateToShoppingCart()
+                ifCartIsNotEmpty() {
+                    navigateToShoppingCart()
+                }
                 true
             }
             else -> {
@@ -135,6 +143,7 @@ class ShoppingFragment : Fragment(), NoteItemClickListener {
 
     private fun navigateToShoppingCart() {
         val bundle = bundleOf()
+
         bundle.putFloat(amount, shoppingFragmentViewModel.getFullAmount())
 
         Navigation.findNavController(

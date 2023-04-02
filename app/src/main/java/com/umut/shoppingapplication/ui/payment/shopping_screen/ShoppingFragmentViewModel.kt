@@ -15,6 +15,8 @@ class ShoppingFragmentViewModel @Inject constructor(
     private val productsRepository: ProductsRepository
 ) : ViewModel() {
 
+    var paymentResult: Boolean? = false
+
     private val productList: Array<Product> by lazy {
         arrayOf(
             Product(productName = "Kalem", productPrice = 9.58F),
@@ -87,6 +89,11 @@ class ShoppingFragmentViewModel @Inject constructor(
         var sum = 0F
         productsLiveData.value?.forEach { sum += it.productPrice * it.productCount }
         return sum
+    }
+
+    fun isCartIsNotEmpty(): Boolean {
+       productsLiveData.value?.forEach { if(it.productCount != 0) return true }
+        return false
     }
 
 }

@@ -5,7 +5,7 @@ import android.text.TextUtils
 import android.text.TextWatcher
 
 /**
- * Formats the watched EditText to a credit card number
+ * Formats the watched EditText to a Expiry Date
  */
 class CardExpiryDateFormatterWatcher : TextWatcher {
 

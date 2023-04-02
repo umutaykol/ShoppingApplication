@@ -15,6 +15,8 @@ class PaymentResultFragmentViewModel @Inject constructor(
     private val ordersRepository: OrdersRepository
 ) : ViewModel() {
 
+    var order: Order? = null
+
     private var _ordersMutableLiveData: MutableLiveData<MutableList<Order>?> =
         MutableLiveData<MutableList<Order>?>()
     val ordersLiveData: LiveData<MutableList<Order>?>
