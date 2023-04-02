@@ -14,9 +14,9 @@ import dagger.hilt.android.components.ViewModelComponent
 abstract class RepositoryDiModule {
 
     @Binds
-    abstract fun getProductsRepository(repo: ProductsRepositoryImpl): ProductsRepository
+    abstract fun provideProductsRepository(repo: ProductsRepositoryImpl): ProductsRepository
 
     @Binds
-    abstract fun getOrdersRepository(repo: OrdersRepositoryImpl): OrdersRepository
+    abstract fun provideOrdersRepository(repo: OrdersRepositoryImpl): OrdersRepository
 
 }

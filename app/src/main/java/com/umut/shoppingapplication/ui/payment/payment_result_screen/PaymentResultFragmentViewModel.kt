@@ -22,31 +22,9 @@ class PaymentResultFragmentViewModel @Inject constructor(
     val ordersLiveData: LiveData<MutableList<Order>?>
         get() = _ordersMutableLiveData
 
-
     /**
      * Database Operations
      */
-
-    private fun deleteOrdersFromRepository(vararg orders: Order) = viewModelScope.launch {
-        ordersRepository.deleteAll(*orders)
-    }
-
-    private fun deleteAllOrdersFromRepository() = viewModelScope.launch {
-        ordersRepository.deleteAllOrders()
-    }
-
-    private fun getAllOrdersFromRepository() = viewModelScope.launch {
-        val orders = ordersRepository.getAllOrders()
-        _ordersMutableLiveData.postValue(orders)
-    }
-
-    private fun updateOrderOnRepository(order: Order) = viewModelScope.launch {
-        ordersRepository.updateOrder(order)
-    }
-
-    private fun insertOrderToRepository(order: Order) = viewModelScope.launch {
-        ordersRepository.insertOrder(order)
-    }
 
     fun insertOrdersToRepository(vararg orders: Order) = viewModelScope.launch {
         ordersRepository.insertAll(*orders)

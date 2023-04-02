@@ -36,10 +36,6 @@ class ShoppingFragmentViewModel @Inject constructor(
      * Database Operations
      */
 
-    private fun deleteProductsFromRepository(vararg product: Product) = viewModelScope.launch {
-        productsRepository.deleteAll(*product)
-    }
-
     private fun deleteAllProductsFromRepository() = viewModelScope.launch {
         productsRepository.deleteAllProducts()
     }
@@ -51,10 +47,6 @@ class ShoppingFragmentViewModel @Inject constructor(
 
     private fun updateProductOnRepository(product: Product) = viewModelScope.launch {
         productsRepository.updateProduct(product)
-    }
-
-    private fun insertProductToRepository(product: Product) = viewModelScope.launch {
-        productsRepository.insertProduct(product)
     }
 
     private fun insertProductsToRepository(vararg products: Product) = viewModelScope.launch {
