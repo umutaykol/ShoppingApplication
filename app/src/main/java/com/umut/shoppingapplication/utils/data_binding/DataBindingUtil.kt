@@ -31,5 +31,5 @@ fun setAsTextOfProductPrice(view: View, product: Product) {
 
 @BindingAdapter("app:setMaskedTextCreditCardNumber")
 fun setMaskedTextCreditCardNumber(view: View, creditCardNumber: String) {
-    (view as TextView).text = creditCardNumber.filter { it != white_space }.maskedCardNumber()
+    (view as TextView).text = creditCardNumber.maskedCardNumber()
 }
