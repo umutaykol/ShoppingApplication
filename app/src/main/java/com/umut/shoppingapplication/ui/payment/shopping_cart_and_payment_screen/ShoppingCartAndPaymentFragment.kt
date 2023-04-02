@@ -26,7 +26,7 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class ShoppingCartAndPaymentFragment : Fragment() {
 
-    lateinit var binding: FragmentShoppingCartAndPaymentBinding
+    private lateinit var binding: FragmentShoppingCartAndPaymentBinding
 
     private val shoppingCartAndPaymentFragmentViewModel: ShoppingCartAndPaymentFragmentViewModel by viewModels()
 
@@ -72,15 +72,22 @@ class ShoppingCartAndPaymentFragment : Fragment() {
     }
 
     private fun configureTextChangedListeners() {
+        /**
+         * Entrance Format Watchers For Expiry Date And Card Number.
+         */
         binding.cardNumberTextInputEditText.addTextChangedListener(FourDigitCardFormatterWatcher())
         binding.cardExpiryDateTextInputEditText.addTextChangedListener(CardExpiryDateFormatterWatcher())
+
+        /**
+         * Entrance Validity Watchers For Expiry Date And Card Number.
+         */
         binding.cardNumberTextInputEditText.addTextChangedListener(CardNumberInputValidityWatcher(binding))
         binding.cardExpiryDateTextInputEditText.addTextChangedListener(CardExpiryDateInputValidityWatcher(binding))
     }
 
     private fun configureClickListeners() {
         binding.consentOrderButton.setOnClickListener {
-            ifCardInformationsCorrect() {
+            ifCardInformationsCorrect {
                 navigateToPaymentResult()
             }
         }
@@ -119,6 +126,6 @@ class ShoppingCartAndPaymentFragment : Fragment() {
         ).navigate(R.id.action_shoppingCartandPaymentFragment_to_paymentResultFragment, bundle)
     }
 
-    private fun getDateWithStringFormat(): String? = getCurrentDateTime().toString("dd.MM.yyyy")
+    private fun getDateWithStringFormat(): String = getCurrentDateTime().toString("dd.MM.yyyy")
 
 }

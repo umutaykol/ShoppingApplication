@@ -7,6 +7,8 @@ import com.umut.shoppingapplication.utils.Constants.white_space
 
 /**
  * Formats the watched EditText to a credit card number
+ *
+ * Expected Card Format -> **** **** **** ****
  */
 class FourDigitCardFormatterWatcher : TextWatcher {
 

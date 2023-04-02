@@ -32,9 +32,7 @@ class CardNumberInputValidityWatcher(private val binding: FragmentShoppingCartAn
                         binding.cardNumberTextInputLayout.error = "Kart numaranız hatalı."
                     }
                 } else if (length == 19) {
-                    if (toString().checkLuhnAlgorithm()) {
-
-                    } else {
+                    if (!toString().checkLuhnAlgorithm()) {
                         binding.cardNumberTextInputLayout.error = "Kart numaranız hatalı."
                     }
                 } else {

@@ -6,6 +6,8 @@ import android.text.TextWatcher
 
 /**
  * Formats the watched EditText to a Expiry Date
+ *
+ * Expected Expiry Date -> MM/yy
  */
 class CardExpiryDateFormatterWatcher : TextWatcher {
 

@@ -54,6 +54,8 @@ class OrdersFragment : Fragment(), OrderItemClickListener {
     private fun observeLiveDataChanges() {
         with(ordersFragmentViewModel) {
             ordersLiveData.observe(viewLifecycleOwner) {
+
+                // set no content lottie animation visible if there is no order in DB
                 if (it?.size == 0 || it == null) {
                     setVisibilityNoContentLottieAnimation(isVisible = true)
                 } else {
