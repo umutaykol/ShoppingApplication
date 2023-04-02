@@ -23,7 +23,6 @@ class OrdersFragment : Fragment() {
     ): View {
         binding = FragmentOrdersBinding.inflate(inflater, container, false)
 
-
         configureOrdersRecyclerView()
 
         observeLiveDataChanges()
@@ -34,6 +33,7 @@ class OrdersFragment : Fragment() {
     }
 
     private fun configureOrdersRecyclerView() {
+        // TODO : Orderlar için Recycler View Configure Edilecek.
 //        binding.ordersRecyclerView.adapter = ordersRecyclerViewAdapter
 //        binding.productsRecyclerView.layoutManager = LinearLayoutManager(
 //            requireContext(),

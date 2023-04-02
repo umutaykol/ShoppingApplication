@@ -16,6 +16,7 @@ import com.umut.shoppingapplication.adapters.products.NoteItemClickListener
 import com.umut.shoppingapplication.adapters.products.ProductsRecyclerViewAdapter
 import com.umut.shoppingapplication.databinding.FragmentShoppingBinding
 import com.umut.shoppingapplication.models.Product
+import com.umut.shoppingapplication.utils.Constants
 import com.umut.shoppingapplication.utils.Constants.amount
 import com.umut.shoppingapplication.utils.showShortToast
 import dagger.hilt.android.AndroidEntryPoint
@@ -28,6 +29,17 @@ class ShoppingFragment : Fragment(), NoteItemClickListener {
     lateinit var binding: FragmentShoppingBinding
 
     val shoppingFragmentViewModel: ShoppingFragmentViewModel by viewModels()
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+
+        val paymentResult = arguments?.getBoolean(Constants.payment_result)
+
+        if(paymentResult == true) {
+            // TODO : eğer paymentResult true ise tüm productlar 0' a çekilmeli. Databaseden silinme yapılmayacak.
+        }
+
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

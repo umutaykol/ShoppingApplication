@@ -75,6 +75,10 @@ class ShoppingFragmentViewModel @Inject constructor(
         insertProductsToRepository(*productList)
     }
 
+    fun deleteAllProductsFromDB() {
+        deleteAllProductsFromRepository()
+    }
+
     fun updateProductToDB(product: Product) {
         updateProductOnRepository(product)
     }
