@@ -41,9 +41,24 @@ class FakeShoppingViewModel {
     private val testProduct2ProductPrice = 2.5F
     private val testProduct3ProductPrice = 7.2F
 
-    private val testProduct1 = Product(id = testProduct1Id, productName = testProduct1ProductName, productPrice = testProduct1ProductPrice, productCount = 1)
-    private val testProduct2 = Product(id = testProduct2Id, productName = testProduct2ProductName, productPrice = testProduct2ProductPrice, productCount = 1)
-    private val testProduct3 = Product(id = testProduct3Id, productName = testProduct3ProductName, productPrice = testProduct3ProductPrice, productCount = 1)
+    private val testProduct1 = Product(
+        id = testProduct1Id,
+        productName = testProduct1ProductName,
+        productPrice = testProduct1ProductPrice,
+        productCount = 1
+    )
+    private val testProduct2 = Product(
+        id = testProduct2Id,
+        productName = testProduct2ProductName,
+        productPrice = testProduct2ProductPrice,
+        productCount = 1
+    )
+    private val testProduct3 = Product(
+        id = testProduct3Id,
+        productName = testProduct3ProductName,
+        productPrice = testProduct3ProductPrice,
+        productCount = 1
+    )
 
     @Test
     fun `getAllProducts with empty repository returns size of 0`() {
@@ -60,7 +75,7 @@ class FakeShoppingViewModel {
 
         val value = viewModel.productsLiveData.getOrAwaitValue()
 
-        assertThat(value?.get(0)?.id).isEqualTo("12345")
+        assertThat(value?.get(0)).isEqualTo(testProduct1)
     }
 
     @Test
@@ -100,12 +115,11 @@ class FakeShoppingViewModel {
     }
 
     @Test
-    fun `after all test products inserted getFullAmount() returns full amount`() {
+    fun `after all test products inserted getFullAmount() returns expected amount`() {
         viewModel.addProductToDB(testProduct1, testProduct2, testProduct3)
 
         assertThat(viewModel.getFullAmount()).isEqualTo(testProduct1ProductPrice + testProduct2ProductPrice + testProduct3ProductPrice)
     }
-
 
 
 }
