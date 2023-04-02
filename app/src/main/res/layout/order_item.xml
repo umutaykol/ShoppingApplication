@@ -40,10 +40,10 @@
 
 
                 <LinearLayout
+                    android:id="@+id/header_title_linear_layout"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
-                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="@+id/guideline1"
                     app:layout_constraintTop_toTopOf="parent">
 
@@ -84,7 +84,6 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
-                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="@+id/guideline2"
                     app:layout_constraintTop_toTopOf="parent">
 
@@ -119,6 +118,30 @@
                         android:textStyle="bold" />
 
                 </LinearLayout>
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/image_card_view"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:background="?android:attr/selectableItemBackground"
+                    android:onClick="@{(view) -> on_click_listener.deleteOrderClicked(view, order, position)}"
+                    app:cardCornerRadius="20dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/header_title_linear_layout">
+
+                    <ImageView
+                        android:id="@+id/image_view"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:contentDescription="@string/success_icon"
+                        android:padding="5dp"
+                        android:src="@drawable/delete_icon" />
+
+                </androidx.cardview.widget.CardView>
+
 
                 <androidx.constraintlayout.widget.Guideline
                     android:id="@+id/guideline1"
