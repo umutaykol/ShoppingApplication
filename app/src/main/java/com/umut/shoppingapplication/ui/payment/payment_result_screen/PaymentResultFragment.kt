@@ -22,7 +22,7 @@ class PaymentResultFragment : Fragment() {
 
     lateinit var binding: FragmentPaymentResultBinding
 
-    private val paymentResultViewModel: PaymentResultViewModel by viewModels()
+    private val paymentResultFragmentViewModel: PaymentResultFragmentViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -46,7 +46,7 @@ class PaymentResultFragment : Fragment() {
         val order: Order? = arguments?.getParcelable(order)
         binding.order = order
 
-        order?.let { paymentResultViewModel.insertOrdersToRepository(it) }
+        order?.let { paymentResultFragmentViewModel.insertOrdersToRepository(it) }
 
         configureListeners()
 

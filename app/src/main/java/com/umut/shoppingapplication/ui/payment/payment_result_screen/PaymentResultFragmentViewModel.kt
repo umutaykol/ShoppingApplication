@@ -11,7 +11,7 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class PaymentResultViewModel @Inject constructor(
+class PaymentResultFragmentViewModel @Inject constructor(
     private val ordersRepository: OrdersRepository
 ) : ViewModel() {
 
