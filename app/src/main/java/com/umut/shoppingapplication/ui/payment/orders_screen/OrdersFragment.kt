@@ -8,6 +8,7 @@ import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.umut.shoppingapplication.R
 import com.umut.shoppingapplication.adapters.orders.OrderItemClickListener
 import com.umut.shoppingapplication.adapters.orders.OrdersRecyclerViewAdapter
 import com.umut.shoppingapplication.databinding.FragmentOrdersBinding
@@ -29,7 +30,7 @@ class OrdersFragment : Fragment(), OrderItemClickListener {
         binding = FragmentOrdersBinding.inflate(inflater, container, false)
 
         configureOrdersRecyclerView()
-
+        configureToolbarTitle()
         observeLiveDataChanges()
 
         ordersFragmentViewModel.getAllOrdersFromRepository()
@@ -46,11 +47,31 @@ class OrdersFragment : Fragment(), OrderItemClickListener {
         )
     }
 
+    private fun configureToolbarTitle() {
+        binding.toolbar.root.setTitle(R.string.shopping_cart_and_payment_toolbar_title)
+    }
+
     private fun observeLiveDataChanges() {
         with(ordersFragmentViewModel) {
             ordersLiveData.observe(viewLifecycleOwner) {
+                if (it?.size == 0 || it == null) {
+                    setVisibilityNoContentLottieAnimation(isVisible = true)
+                } else {
+                    setVisibilityNoContentLottieAnimation(isVisible = false)
+                }
+
                 addOrdersToRecyclerView(it)
             }
+        }
+    }
+
+    private fun setVisibilityNoContentLottieAnimation(isVisible: Boolean = false) {
+        if (isVisible) {
+            binding.noContentLottieAnimationView.visibility = View.VISIBLE
+            binding.ordersRecyclerView.visibility = View.GONE
+        } else {
+            binding.noContentLottieAnimationView.visibility = View.GONE
+            binding.ordersRecyclerView.visibility = View.VISIBLE
         }
     }
 

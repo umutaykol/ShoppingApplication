@@ -4,6 +4,7 @@
     <string name="nav_header_desc">Navigation header</string>
     <string name="menu_order">Tüm Siparişlerim</string>
     <string name="shopping_cart_and_payment_toolbar_title">Ödeme Sayfası</string>
+    <string name="orders_toolbar_title">Siparişler Sayfası</string>
     <string name="open">Open</string>
     <string name="close">Close</string>
     <string name="subtitle">subtitle</string>
